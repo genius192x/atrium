@@ -831,12 +831,6 @@ body::after {
   max-width: 549px;
 }
 
-.popup__close {
-  position: absolute;
-  top: 50px;
-  right: 55px;
-}
-
 .popup__close.result {
   position: absolute;
   top: -10%;
@@ -1622,24 +1616,6 @@ body::after {
 
 body {
   background-color: #0e2e93;
-}
-
-header {
-  z-index: 2;
-}
-
-main {
-  margin-bottom: 950px;
-  z-index: 2;
-}
-
-footer {
-  margin: 0 auto;
-  z-index: 1;
-  position: fixed;
-  overflow: scroll;
-  left: 20%;
-  bottom: 0;
 }
 
 ::-webkit-scrollbar {
@@ -3838,11 +3814,6 @@ footer {
   .tabs__images {
     margin-bottom: 35px;
     margin-right: auto;
-  }
-
-  footer {
-    left: 0%;
-    height: 100%;
   }
 
   .achievements__item:nth-child(1) {
