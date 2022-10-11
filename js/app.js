@@ -4018,7 +4018,7 @@
         let slide = "";
         let reviewsWrapperOfSlider = document.getElementById("reviewsWrapperSlider");
         dataSlide.forEach((data => {
-            slide += `\n\t\t<div class="slide swiper-slide">\n\t\t\t<div class="slide__head">\n\t\t\t\t\t\t\t<div class="slide__photo">${data.photo}</div>\n\t\t\t\t\t\t\t<div class="slide__autor">\n\t\t\t\t\t\t\t\t<div class="slide__name">${data.name}</div>\n\t\t\t\t\t\t\t\t<div class="slide__role">${data.role}</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="slide__content">\n\t\t\t\t\t\t${data.content}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="slide__footer">\n\t\t\t\t\t\t\t<div class="slide__company">${data.company}</div>\n\t\t\t\t\t\t\t<a href="${data.link}" data-popup="#doc" class="slide__btn"><img src="/img/Document.svg" alt=""></a>\n\t\t\t\t\t\t</div>\n\t\t</div>\n\t\t`;
+            slide += `\n\t\t<div class="slide swiper-slide">\n\t\t\t<div class="slide__head">\n\t\t\t\t\t\t\t<div class="slide__photo">${data.photo}</div>\n\t\t\t\t\t\t\t<div class="slide__autor">\n\t\t\t\t\t\t\t\t<div class="slide__name">${data.name}</div>\n\t\t\t\t\t\t\t\t<div class="slide__role">${data.role}</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="slide__content">\n\t\t\t\t\t\t${data.content}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="slide__footer">\n\t\t\t\t\t\t\t<div class="slide__company">${data.company}</div>\n\t\t\t\t\t\t\t<a href="${data.link}" data-popup="#doc" class="slide__btn"><img src="img/Document.svg" alt=""></a>\n\t\t\t\t\t\t</div>\n\t\t</div>\n\t\t`;
         }));
         reviewsWrapperOfSlider.insertAdjacentHTML("afterbegin", slide);
     }
