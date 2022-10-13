@@ -389,6 +389,7 @@ body::after {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
   right: 0;
   padding: 30px 10px;
   -webkit-transition: visibility 0.8s ease 0s;
@@ -401,7 +402,7 @@ body::after {
 .popup_show {
   z-index: 150;
   visibility: visible;
-  overflow: auto;
+  overflow-y: auto;
   pointer-events: auto;
 }
 
