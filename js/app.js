@@ -2,22 +2,22 @@
     "use strict";
     const modules_flsModules = {};
     let isMobile = {
-        Android: function() {
+        Android: function () {
             return navigator.userAgent.match(/Android/i);
         },
-        BlackBerry: function() {
+        BlackBerry: function () {
             return navigator.userAgent.match(/BlackBerry/i);
         },
-        iOS: function() {
+        iOS: function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod/i);
         },
-        Opera: function() {
+        Opera: function () {
             return navigator.userAgent.match(/Opera Mini/i);
         },
-        Windows: function() {
+        Windows: function () {
             return navigator.userAgent.match(/IEMobile/i);
         },
-        any: function() {
+        any: function () {
             return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
         }
     };
@@ -45,7 +45,7 @@
                 document.documentElement.classList.remove("lock");
             }), delay);
             bodyLockStatus = false;
-            setTimeout((function() {
+            setTimeout((function () {
                 bodyLockStatus = true;
             }), delay);
         }
@@ -61,7 +61,7 @@
             body.style.paddingRight = window.innerWidth - document.querySelector(".wrapper").offsetWidth + "px";
             document.documentElement.classList.add("lock");
             bodyLockStatus = false;
-            setTimeout((function() {
+            setTimeout((function () {
                 bodyLockStatus = true;
             }), delay);
         }
@@ -80,7 +80,7 @@
             }));
             let mdQueriesArray = dataMediaQueries(tabs, "tabs");
             if (mdQueriesArray && mdQueriesArray.length) mdQueriesArray.forEach((mdQueriesItem => {
-                mdQueriesItem.matchMedia.addEventListener("change", (function() {
+                mdQueriesItem.matchMedia.addEventListener("change", (function () {
                     setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
                 }));
                 setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
@@ -169,16 +169,16 @@
     }
     function functions_FLS(message) {
         setTimeout((() => {
-            if (window.FLS) ;
+            if (window.FLS);
         }), 0);
     }
     function uniqArray(array) {
-        return array.filter((function(item, index, self) {
+        return array.filter((function (item, index, self) {
             return self.indexOf(item) === index;
         }));
     }
     function dataMediaQueries(array, dataSetValue) {
-        const media = Array.from(array).filter((function(item, index, self) {
+        const media = Array.from(array).filter((function (item, index, self) {
             if (item.dataset[dataSetValue]) return item.dataset[dataSetValue].split(",")[0];
         }));
         if (media.length) {
@@ -192,7 +192,7 @@
                 breakpoint.item = item;
                 breakpointsArray.push(breakpoint);
             }));
-            let mdQueries = breakpointsArray.map((function(item) {
+            let mdQueries = breakpointsArray.map((function (item) {
                 return "(" + item.type + "-width: " + item.value + "px)," + item.value + "," + item.type;
             }));
             mdQueries = uniqArray(mdQueries);
@@ -203,7 +203,7 @@
                     const mediaBreakpoint = paramsArray[1];
                     const mediaType = paramsArray[2];
                     const matchMedia = window.matchMedia(paramsArray[0]);
-                    const itemsArray = breakpointsArray.filter((function(item) {
+                    const itemsArray = breakpointsArray.filter((function (item) {
                         if (item.value === mediaBreakpoint && item.type === mediaType) return true;
                     }));
                     mdQueriesArray.push({
@@ -240,10 +240,10 @@
                     goHash: true
                 },
                 on: {
-                    beforeOpen: function() {},
-                    afterOpen: function() {},
-                    beforeClose: function() {},
-                    afterClose: function() {}
+                    beforeOpen: function () { },
+                    afterOpen: function () { },
+                    beforeClose: function () { },
+                    afterClose: function () { }
                 }
             };
             this.youTubeCode;
@@ -265,7 +265,7 @@
             this._reopen = false;
             this._selectorOpen = false;
             this.lastFocusEl = false;
-            this._focusEl = [ "a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])' ];
+            this._focusEl = ["a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'];
             this.options = {
                 ...config,
                 ...options,
@@ -290,7 +290,7 @@
             this.eventsPopup();
         }
         eventsPopup() {
-            document.addEventListener("click", function(e) {
+            document.addEventListener("click", function (e) {
                 const buttonOpen = e.target.closest(`[${this.options.attributeOpenButton}]`);
                 if (buttonOpen) {
                     e.preventDefault();
@@ -312,7 +312,7 @@
                     return;
                 }
             }.bind(this));
-            document.addEventListener("keydown", function(e) {
+            document.addEventListener("keydown", function (e) {
                 if (this.options.closeEsc && 27 == e.which && "Escape" === e.code && this.isOpen) {
                     e.preventDefault();
                     this.close();
@@ -324,10 +324,10 @@
                 }
             }.bind(this));
             if (this.options.hashSettings.goHash) {
-                window.addEventListener("hashchange", function() {
+                window.addEventListener("hashchange", function () {
                     if (window.location.hash) this._openToHash(); else this.close(this.targetOpen.selector);
                 }.bind(this));
-                window.addEventListener("load", function() {
+                window.addEventListener("load", function () {
                     if (window.location.hash) this._openToHash();
                 }.bind(this));
             }
@@ -455,7 +455,7 @@
             const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
             if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
         }
-        popupLogging(message) {}
+        popupLogging(message) { }
     }
     modules_flsModules.popup = new Popup({});
     let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
@@ -497,10 +497,10 @@
     }
     const ssrDocument = {
         body: {},
-        addEventListener() {},
-        removeEventListener() {},
+        addEventListener() { },
+        removeEventListener() { },
         activeElement: {
-            blur() {},
+            blur() { },
             nodeName: ""
         },
         querySelector() {
@@ -514,7 +514,7 @@
         },
         createEvent() {
             return {
-                initEvent() {}
+                initEvent() { }
             };
         },
         createElement() {
@@ -522,7 +522,7 @@
                 children: [],
                 childNodes: [],
                 style: {},
-                setAttribute() {},
+                setAttribute() { },
                 getElementsByTagName() {
                     return [];
                 }
@@ -566,16 +566,16 @@
             search: ""
         },
         history: {
-            replaceState() {},
-            pushState() {},
-            go() {},
-            back() {}
+            replaceState() { },
+            pushState() { },
+            go() { },
+            back() { }
         },
         CustomEvent: function CustomEvent() {
             return this;
         },
-        addEventListener() {},
-        removeEventListener() {},
+        addEventListener() { },
+        removeEventListener() { },
         getComputedStyle() {
             return {
                 getPropertyValue() {
@@ -583,11 +583,11 @@
                 }
             };
         },
-        Image() {},
-        Date() {},
+        Image() { },
+        Date() { },
         screen: {},
-        setTimeout() {},
-        clearTimeout() {},
+        setTimeout() { },
+        clearTimeout() { },
         matchMedia() {
             return {};
         },
@@ -643,7 +643,7 @@
         return uniqueArray;
     }
     function qsa(selector, context) {
-        if ("string" !== typeof selector) return [ selector ];
+        if ("string" !== typeof selector) return [selector];
         const a = [];
         const res = context.querySelectorAll(selector);
         for (let i = 0; i < res.length; i += 1) a.push(res[i]);
@@ -897,7 +897,7 @@
     function each(callback) {
         if (!callback) return this;
         this.forEach(((el, index) => {
-            callback.apply(el, [ el, index ]);
+            callback.apply(el, [el, index]);
         }));
         return this;
     }
@@ -933,7 +933,7 @@
         if (selector === document) return el === document;
         if (selector === window) return el === window;
         if (selector.nodeType || selector instanceof Dom7) {
-            compareWith = selector.nodeType ? [ selector ] : selector;
+            compareWith = selector.nodeType ? [selector] : selector;
             for (i = 0; i < compareWith.length; i += 1) if (compareWith[i] === el) return true;
             return false;
         }
@@ -956,9 +956,9 @@
         if (index < 0) {
             const returnIndex = length + index;
             if (returnIndex < 0) return dom7_esm_$([]);
-            return dom7_esm_$([ this[returnIndex] ]);
+            return dom7_esm_$([this[returnIndex]]);
         }
-        return dom7_esm_$([ this[index] ]);
+        return dom7_esm_$([this[index]]);
     }
     function append(...els) {
         let newChild;
@@ -987,10 +987,10 @@
     function next(selector) {
         if (this.length > 0) {
             if (selector) {
-                if (this[0].nextElementSibling && dom7_esm_$(this[0].nextElementSibling).is(selector)) return dom7_esm_$([ this[0].nextElementSibling ]);
+                if (this[0].nextElementSibling && dom7_esm_$(this[0].nextElementSibling).is(selector)) return dom7_esm_$([this[0].nextElementSibling]);
                 return dom7_esm_$([]);
             }
-            if (this[0].nextElementSibling) return dom7_esm_$([ this[0].nextElementSibling ]);
+            if (this[0].nextElementSibling) return dom7_esm_$([this[0].nextElementSibling]);
             return dom7_esm_$([]);
         }
         return dom7_esm_$([]);
@@ -1012,10 +1012,10 @@
         if (this.length > 0) {
             const el = this[0];
             if (selector) {
-                if (el.previousElementSibling && dom7_esm_$(el.previousElementSibling).is(selector)) return dom7_esm_$([ el.previousElementSibling ]);
+                if (el.previousElementSibling && dom7_esm_$(el.previousElementSibling).is(selector)) return dom7_esm_$([el.previousElementSibling]);
                 return dom7_esm_$([]);
             }
-            if (el.previousElementSibling) return dom7_esm_$([ el.previousElementSibling ]);
+            if (el.previousElementSibling) return dom7_esm_$([el.previousElementSibling]);
             return dom7_esm_$([]);
         }
         return dom7_esm_$([]);
@@ -1162,10 +1162,10 @@
         Object.keys(object).forEach((key => {
             try {
                 object[key] = null;
-            } catch (e) {}
+            } catch (e) { }
             try {
                 delete object[key];
-            } catch (e) {}
+            } catch (e) { }
         }));
     }
     function utils_nextTick(callback, delay = 0) {
@@ -1209,7 +1209,7 @@
     }
     function utils_extend(...args) {
         const to = Object(args[0]);
-        const noExtend = [ "__proto__", "constructor", "prototype" ];
+        const noExtend = ["__proto__", "constructor", "prototype"];
         for (let i = 1; i < args.length; i += 1) {
             const nextSource = args[i];
             if (void 0 !== nextSource && null !== nextSource && !isNode(nextSource)) {
@@ -1229,7 +1229,7 @@
     function utils_setCSSProperty(el, varName, varValue) {
         el.style.setProperty(varName, varValue);
     }
-    function animateCSSModeScroll({swiper, targetPosition, side}) {
+    function animateCSSModeScroll({ swiper, targetPosition, side }) {
         const window = ssr_window_esm_getWindow();
         const startPosition = -swiper.translate;
         let startTime = null;
@@ -1281,7 +1281,7 @@
                         }
                     });
                     window.addEventListener("testPassiveListener", null, opts);
-                } catch (e) {}
+                } catch (e) { }
                 return supportsPassive;
             }(),
             gestures: function checkGestures() {
@@ -1294,7 +1294,7 @@
         return support;
     }
     let deviceCached;
-    function calcDevice({userAgent} = {}) {
+    function calcDevice({ userAgent } = {}) {
         const support = getSupport();
         const window = ssr_window_esm_getWindow();
         const platform = window.navigator.platform;
@@ -1311,10 +1311,10 @@
         const iphone = !ipad && ua.match(/(iPhone\sOS|iOS)\s([\d_]+)/);
         const windows = "Win32" === platform;
         let macos = "MacIntel" === platform;
-        const iPadScreens = [ "1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810" ];
+        const iPadScreens = ["1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810"];
         if (!ipad && macos && support.touch && iPadScreens.indexOf(`${screenWidth}x${screenHeight}`) >= 0) {
             ipad = ua.match(/(Version)\/([\d.]+)/);
-            if (!ipad) ipad = [ 0, 1, "13_0_0" ];
+            if (!ipad) ipad = [0, 1, "13_0_0"];
             macos = false;
         }
         if (android && !windows) {
@@ -1347,7 +1347,7 @@
         if (!browser) browser = calcBrowser();
         return browser;
     }
-    function Resize({swiper, on, emit}) {
+    function Resize({ swiper, on, emit }) {
         const window = ssr_window_esm_getWindow();
         let observer = null;
         let animationFrame = null;
@@ -1360,10 +1360,10 @@
             if (!swiper || swiper.destroyed || !swiper.initialized) return;
             observer = new ResizeObserver((entries => {
                 animationFrame = window.requestAnimationFrame((() => {
-                    const {width, height} = swiper;
+                    const { width, height } = swiper;
                     let newWidth = width;
                     let newHeight = height;
-                    entries.forEach((({contentBoxSize, contentRect, target}) => {
+                    entries.forEach((({ contentBoxSize, contentRect, target }) => {
                         if (target && target !== swiper.el) return;
                         newWidth = contentRect ? contentRect.width : (contentBoxSize[0] || contentBoxSize).inlineSize;
                         newHeight = contentRect ? contentRect.height : (contentBoxSize[0] || contentBoxSize).blockSize;
@@ -1398,7 +1398,7 @@
             window.removeEventListener("orientationchange", orientationChangeHandler);
         }));
     }
-    function Observer({swiper, extendParams, on, emit}) {
+    function Observer({ swiper, extendParams, on, emit }) {
         const observers = [];
         const window = ssr_window_esm_getWindow();
         const attach = (target, options = {}) => {
@@ -1518,7 +1518,7 @@
             const eventsArray = Array.isArray(events) ? events : events.split(" ");
             eventsArray.forEach((event => {
                 if (self.eventsAnyListeners && self.eventsAnyListeners.length) self.eventsAnyListeners.forEach((eventHandler => {
-                    eventHandler.apply(context, [ event, ...data ]);
+                    eventHandler.apply(context, [event, ...data]);
                 }));
                 if (self.eventsListeners && self.eventsListeners[event]) self.eventsListeners[event].forEach((eventHandler => {
                     eventHandler.apply(context, data);
@@ -1564,7 +1564,7 @@
             return parseFloat(node.getPropertyValue(getDirectionLabel(label)) || 0);
         }
         const params = swiper.params;
-        const {$wrapperEl, size: swiperSize, rtlTranslate: rtl, wrongRTL} = swiper;
+        const { $wrapperEl, size: swiperSize, rtlTranslate: rtl, wrongRTL } = swiper;
         const isVirtual = swiper.virtual && params.virtual.enabled;
         const previousSlidesLength = isVirtual ? swiper.virtual.slides.length : swiper.slides.length;
         const slides = $wrapperEl.children(`.${swiper.params.slideClass}`);
@@ -1622,7 +1622,7 @@
                     const marginRight = getDirectionPropertyValue(slideStyles, "margin-right");
                     const boxSizing = slideStyles.getPropertyValue("box-sizing");
                     if (boxSizing && "border-box" === boxSizing) slideSize = width + marginLeft + marginRight; else {
-                        const {clientWidth, offsetWidth} = slide[0];
+                        const { clientWidth, offsetWidth } = slide[0];
                         slideSize = width + paddingLeft + paddingRight + marginLeft + marginRight + (offsetWidth - clientWidth);
                     }
                 }
@@ -1672,7 +1672,7 @@
             snapGrid = newSlidesGrid;
             if (Math.floor(swiper.virtualSize - swiperSize) - Math.floor(snapGrid[snapGrid.length - 1]) > 1) snapGrid.push(swiper.virtualSize - swiperSize);
         }
-        if (0 === snapGrid.length) snapGrid = [ 0 ];
+        if (0 === snapGrid.length) snapGrid = [0];
         if (0 !== params.spaceBetween) {
             const key = swiper.isHorizontal() && rtl ? "marginLeft" : getDirectionLabel("marginRight");
             slides.filter(((_, slideIndex) => {
@@ -1773,7 +1773,7 @@
     function updateSlidesProgress(translate = this && this.translate || 0) {
         const swiper = this;
         const params = swiper.params;
-        const {slides, rtlTranslate: rtl, snapGrid} = swiper;
+        const { slides, rtlTranslate: rtl, snapGrid } = swiper;
         if (0 === slides.length) return;
         if ("undefined" === typeof slides[0].swiperSlideOffset) swiper.updateSlidesOffset();
         let offsetCenter = -translate;
@@ -1808,7 +1808,7 @@
         }
         const params = swiper.params;
         const translatesDiff = swiper.maxTranslate() - swiper.minTranslate();
-        let {progress, isBeginning, isEnd} = swiper;
+        let { progress, isBeginning, isEnd } = swiper;
         const wasBeginning = isBeginning;
         const wasEnd = isEnd;
         if (0 === translatesDiff) {
@@ -1833,7 +1833,7 @@
     }
     function updateSlidesClasses() {
         const swiper = this;
-        const {slides, params, $wrapperEl, activeIndex, realIndex} = swiper;
+        const { slides, params, $wrapperEl, activeIndex, realIndex } = swiper;
         const isVirtual = swiper.virtual && params.virtual.enabled;
         slides.removeClass(`${params.slideActiveClass} ${params.slideNextClass} ${params.slidePrevClass} ${params.slideDuplicateActiveClass} ${params.slideDuplicateNextClass} ${params.slideDuplicatePrevClass}`);
         let activeSlide;
@@ -1859,7 +1859,7 @@
     function updateActiveIndex(newActiveIndex) {
         const swiper = this;
         const translate = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
-        const {slidesGrid, snapGrid, params, activeIndex: previousIndex, realIndex: previousRealIndex, snapIndex: previousSnapIndex} = swiper;
+        const { slidesGrid, snapGrid, params, activeIndex: previousIndex, realIndex: previousRealIndex, snapIndex: previousSnapIndex } = swiper;
         let activeIndex = newActiveIndex;
         let snapIndex;
         if ("undefined" === typeof activeIndex) {
@@ -1926,7 +1926,7 @@
     };
     function getSwiperTranslate(axis = (this.isHorizontal() ? "x" : "y")) {
         const swiper = this;
-        const {params, rtlTranslate: rtl, translate, $wrapperEl} = swiper;
+        const { params, rtlTranslate: rtl, translate, $wrapperEl } = swiper;
         if (params.virtualTranslate) return rtl ? -translate : translate;
         if (params.cssMode) return translate;
         let currentTranslate = utils_getTranslate($wrapperEl[0], axis);
@@ -1935,7 +1935,7 @@
     }
     function setTranslate(translate, byController) {
         const swiper = this;
-        const {rtlTranslate: rtl, params, $wrapperEl, wrapperEl, progress} = swiper;
+        const { rtlTranslate: rtl, params, $wrapperEl, wrapperEl, progress } = swiper;
         let x = 0;
         let y = 0;
         const z = 0;
@@ -1961,7 +1961,7 @@
     }
     function translateTo(translate = 0, speed = this.params.speed, runCallbacks = true, translateBounds = true, internal) {
         const swiper = this;
-        const {params, wrapperEl} = swiper;
+        const { params, wrapperEl } = swiper;
         if (swiper.animating && params.preventInteractionOnTransition) return false;
         const minTranslate = swiper.minTranslate();
         const maxTranslate = swiper.maxTranslate();
@@ -2029,8 +2029,8 @@
         if (!swiper.params.cssMode) swiper.$wrapperEl.transition(duration);
         swiper.emit("setTransition", duration, byController);
     }
-    function transitionEmit({swiper, runCallbacks, direction, step}) {
-        const {activeIndex, previousIndex} = swiper;
+    function transitionEmit({ swiper, runCallbacks, direction, step }) {
+        const { activeIndex, previousIndex } = swiper;
         let dir = direction;
         if (!dir) if (activeIndex > previousIndex) dir = "next"; else if (activeIndex < previousIndex) dir = "prev"; else dir = "reset";
         swiper.emit(`transition${step}`);
@@ -2045,7 +2045,7 @@
     }
     function transitionStart(runCallbacks = true, direction) {
         const swiper = this;
-        const {params} = swiper;
+        const { params } = swiper;
         if (params.cssMode) return;
         if (params.autoHeight) swiper.updateAutoHeight();
         transitionEmit({
@@ -2057,7 +2057,7 @@
     }
     function transitionEnd_transitionEnd(runCallbacks = true, direction) {
         const swiper = this;
-        const {params} = swiper;
+        const { params } = swiper;
         swiper.animating = false;
         if (params.cssMode) return;
         swiper.setTransition(0);
@@ -2084,7 +2084,7 @@
         const swiper = this;
         let slideIndex = index;
         if (slideIndex < 0) slideIndex = 0;
-        const {params, snapGrid, slidesGrid, previousIndex, activeIndex, rtlTranslate: rtl, wrapperEl, enabled} = swiper;
+        const { params, snapGrid, slidesGrid, previousIndex, activeIndex, rtlTranslate: rtl, wrapperEl, enabled } = swiper;
         if (swiper.animating && params.preventInteractionOnTransition || !enabled && !internal && !initial) return false;
         const skip = Math.min(swiper.params.slidesPerGroupSkip, slideIndex);
         let snapIndex = skip + Math.floor((slideIndex - skip) / swiper.params.slidesPerGroup);
@@ -2183,7 +2183,7 @@
     }
     function slideNext(speed = this.params.speed, runCallbacks = true, internal) {
         const swiper = this;
-        const {animating, enabled, params} = swiper;
+        const { animating, enabled, params } = swiper;
         if (!enabled) return swiper;
         let perGroup = params.slidesPerGroup;
         if ("auto" === params.slidesPerView && 1 === params.slidesPerGroup && params.slidesPerGroupAuto) perGroup = Math.max(swiper.slidesPerViewDynamic("current", true), 1);
@@ -2198,7 +2198,7 @@
     }
     function slidePrev(speed = this.params.speed, runCallbacks = true, internal) {
         const swiper = this;
-        const {params, animating, snapGrid, slidesGrid, rtlTranslate, enabled} = swiper;
+        const { params, animating, snapGrid, slidesGrid, rtlTranslate, enabled } = swiper;
         if (!enabled) return swiper;
         if (params.loop) {
             if (animating && params.loopPreventsSlide) return false;
@@ -2260,7 +2260,7 @@
     }
     function slideToClickedSlide() {
         const swiper = this;
-        const {params, $wrapperEl} = swiper;
+        const { params, $wrapperEl } = swiper;
         const slidesPerView = "auto" === params.slidesPerView ? swiper.slidesPerViewDynamic() : params.slidesPerView;
         let slideToIndex = swiper.clickedIndex;
         let realIndex;
@@ -2294,7 +2294,7 @@
     function loopCreate() {
         const swiper = this;
         const document = ssr_window_esm_getDocument();
-        const {params, $wrapperEl} = swiper;
+        const { params, $wrapperEl } = swiper;
         const $selector = $wrapperEl.children().length > 0 ? dom($wrapperEl.children()[0].parentNode) : $wrapperEl;
         $selector.children(`.${params.slideClass}.${params.slideDuplicateClass}`).remove();
         let slides = $selector.children(`.${params.slideClass}`);
@@ -2329,7 +2329,7 @@
     function loopFix() {
         const swiper = this;
         swiper.emit("beforeLoopFix");
-        const {activeIndex, slides, loopedSlides, allowSlidePrev, allowSlideNext, snapGrid, rtlTranslate: rtl} = swiper;
+        const { activeIndex, slides, loopedSlides, allowSlidePrev, allowSlideNext, snapGrid, rtlTranslate: rtl } = swiper;
         let newIndex;
         swiper.allowSlidePrev = true;
         swiper.allowSlideNext = true;
@@ -2352,7 +2352,7 @@
     }
     function loopDestroy() {
         const swiper = this;
-        const {$wrapperEl, params, slides} = swiper;
+        const { $wrapperEl, params, slides } = swiper;
         $wrapperEl.children(`.${params.slideClass}.${params.slideDuplicateClass},.${params.slideClass}.${params.slideBlankClass}`).remove();
         slides.removeAttr("data-swiper-slide-index");
     }
@@ -2392,7 +2392,7 @@
         const document = ssr_window_esm_getDocument();
         const window = ssr_window_esm_getWindow();
         const data = swiper.touchEventsData;
-        const {params, touches, enabled} = swiper;
+        const { params, touches, enabled } = swiper;
         if (!enabled) return;
         if (swiper.animating && params.preventInteractionOnTransition) return;
         if (!swiper.animating && params.cssMode && params.loop) swiper.loopFix();
@@ -2452,7 +2452,7 @@
         const document = ssr_window_esm_getDocument();
         const swiper = this;
         const data = swiper.touchEventsData;
-        const {params, touches, rtlTranslate: rtl, enabled} = swiper;
+        const { params, touches, rtlTranslate: rtl, enabled } = swiper;
         if (!enabled) return;
         let e = event;
         if (e.originalEvent) e = e.originalEvent;
@@ -2574,7 +2574,7 @@
     function onTouchEnd(event) {
         const swiper = this;
         const data = swiper.touchEventsData;
-        const {params, touches, rtlTranslate: rtl, slidesGrid, enabled} = swiper;
+        const { params, touches, rtlTranslate: rtl, slidesGrid, enabled } = swiper;
         if (!enabled) return;
         let e = event;
         if (e.originalEvent) e = e.originalEvent;
@@ -2657,10 +2657,10 @@
     }
     function onResize() {
         const swiper = this;
-        const {params, el} = swiper;
+        const { params, el } = swiper;
         if (el && 0 === el.offsetWidth) return;
         if (params.breakpoints) swiper.setBreakpoint();
-        const {allowSlideNext, allowSlidePrev, snapGrid} = swiper;
+        const { allowSlideNext, allowSlidePrev, snapGrid } = swiper;
         swiper.allowSlideNext = true;
         swiper.allowSlidePrev = true;
         swiper.updateSize();
@@ -2685,7 +2685,7 @@
     }
     function onScroll() {
         const swiper = this;
-        const {wrapperEl, rtlTranslate, enabled} = swiper;
+        const { wrapperEl, rtlTranslate, enabled } = swiper;
         if (!enabled) return;
         swiper.previousTranslate = swiper.translate;
         if (swiper.isHorizontal()) swiper.translate = -wrapperEl.scrollLeft; else swiper.translate = -wrapperEl.scrollTop;
@@ -2699,10 +2699,10 @@
         swiper.emit("setTranslate", swiper.translate, false);
     }
     let dummyEventAttached = false;
-    function dummyEventListener() {}
+    function dummyEventListener() { }
     const events = (swiper, method) => {
         const document = ssr_window_esm_getDocument();
-        const {params, touchEvents, el, wrapperEl, device, support} = swiper;
+        const { params, touchEvents, el, wrapperEl, device, support } = swiper;
         const capture = !!params.nested;
         const domMethod = "on" === method ? "addEventListener" : "removeEventListener";
         const swiperMethod = method;
@@ -2730,7 +2730,7 @@
     function attachEvents() {
         const swiper = this;
         const document = ssr_window_esm_getDocument();
-        const {params, support} = swiper;
+        const { params, support } = swiper;
         swiper.onTouchStart = onTouchStart.bind(swiper);
         swiper.onTouchMove = onTouchMove.bind(swiper);
         swiper.onTouchEnd = onTouchEnd.bind(swiper);
@@ -2753,7 +2753,7 @@
     const isGridEnabled = (swiper, params) => swiper.grid && params.grid && params.grid.rows > 1;
     function setBreakpoint() {
         const swiper = this;
-        const {activeIndex, initialized, loopedSlides = 0, params, $el} = swiper;
+        const { activeIndex, initialized, loopedSlides = 0, params, $el } = swiper;
         const breakpoints = params.breakpoints;
         if (!breakpoints || breakpoints && 0 === Object.keys(breakpoints).length) return;
         const breakpoint = swiper.getBreakpoint(breakpoints, swiper.params.breakpointsBase, swiper.el);
@@ -2771,7 +2771,7 @@
             if (breakpointParams.grid.fill && "column" === breakpointParams.grid.fill || !breakpointParams.grid.fill && "column" === params.grid.fill) $el.addClass(`${params.containerModifierClass}grid-column`);
             swiper.emitContainerClasses();
         }
-        [ "navigation", "pagination", "scrollbar" ].forEach((prop => {
+        ["navigation", "pagination", "scrollbar"].forEach((prop => {
             const wasModuleEnabled = params[prop] && params[prop].enabled;
             const isModuleEnabled = breakpointParams[prop] && breakpointParams[prop].enabled;
             if (wasModuleEnabled && !isModuleEnabled) swiper[prop].disable();
@@ -2819,7 +2819,7 @@
         }));
         points.sort(((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10)));
         for (let i = 0; i < points.length; i += 1) {
-            const {point, value} = points[i];
+            const { point, value } = points[i];
             if ("window" === base) {
                 if (window.matchMedia(`(min-width: ${value}px)`).matches) breakpoint = point;
             } else if (value <= containerEl.clientWidth) breakpoint = point;
@@ -2841,37 +2841,37 @@
     }
     function addClasses() {
         const swiper = this;
-        const {classNames, params, rtl, $el, device, support} = swiper;
-        const suffixes = prepareClasses([ "initialized", params.direction, {
+        const { classNames, params, rtl, $el, device, support } = swiper;
+        const suffixes = prepareClasses(["initialized", params.direction, {
             "pointer-events": !support.touch
         }, {
-            "free-mode": swiper.params.freeMode && params.freeMode.enabled
-        }, {
-            autoheight: params.autoHeight
-        }, {
-            rtl
-        }, {
-            grid: params.grid && params.grid.rows > 1
-        }, {
-            "grid-column": params.grid && params.grid.rows > 1 && "column" === params.grid.fill
-        }, {
-            android: device.android
-        }, {
-            ios: device.ios
-        }, {
-            "css-mode": params.cssMode
-        }, {
-            centered: params.cssMode && params.centeredSlides
-        }, {
-            "watch-progress": params.watchSlidesProgress
-        } ], params.containerModifierClass);
+                "free-mode": swiper.params.freeMode && params.freeMode.enabled
+            }, {
+                autoheight: params.autoHeight
+            }, {
+                rtl
+            }, {
+                grid: params.grid && params.grid.rows > 1
+            }, {
+                "grid-column": params.grid && params.grid.rows > 1 && "column" === params.grid.fill
+            }, {
+                android: device.android
+            }, {
+                ios: device.ios
+            }, {
+                "css-mode": params.cssMode
+            }, {
+                centered: params.cssMode && params.centeredSlides
+            }, {
+                "watch-progress": params.watchSlidesProgress
+            }], params.containerModifierClass);
         classNames.push(...suffixes);
-        $el.addClass([ ...classNames ].join(" "));
+        $el.addClass([...classNames].join(" "));
         swiper.emitContainerClasses();
     }
     function removeClasses_removeClasses() {
         const swiper = this;
-        const {$el, classNames} = swiper;
+        const { $el, classNames } = swiper;
         $el.removeClass(classNames.join(" "));
         swiper.emitContainerClasses();
     }
@@ -2917,8 +2917,8 @@
     };
     function checkOverflow() {
         const swiper = this;
-        const {isLocked: wasLocked, params} = swiper;
-        const {slidesOffsetBefore} = params;
+        const { isLocked: wasLocked, params } = swiper;
+        const { slidesOffsetBefore } = params;
         if (slidesOffsetBefore) {
             const lastSlideIndex = swiper.slides.length - 1;
             const lastSlideRightEdge = swiper.slidesGrid[lastSlideIndex] + swiper.slidesSizesGrid[lastSlideIndex] + 2 * slidesOffsetBefore;
@@ -3033,7 +3033,7 @@
                 utils_extend(allModulesParams, obj);
                 return;
             }
-            if ([ "navigation", "pagination", "scrollbar" ].indexOf(moduleParamName) >= 0 && true === params[moduleParamName]) params[moduleParamName] = {
+            if (["navigation", "pagination", "scrollbar"].indexOf(moduleParamName) >= 0 && true === params[moduleParamName]) params[moduleParamName] = {
                 auto: true
             };
             if (!(moduleParamName in params && "enabled" in moduleParams)) {
@@ -3069,7 +3069,7 @@
         constructor(...args) {
             let el;
             let params;
-            if (1 === args.length && args[0].constructor && "Object" === Object.prototype.toString.call(args[0]).slice(8, -1)) params = args[0]; else [el, params] = args;
+            if (1 === args.length && args[0].constructor && "Object" === Object.prototype.toString.call(args[0]).slice(8, -1)) params = args[0]; else[el, params] = args;
             if (!params) params = {};
             params = utils_extend({}, params);
             if (el && !params.el) params.el = el;
@@ -3092,7 +3092,7 @@
             swiper.browser = getBrowser();
             swiper.eventsListeners = {};
             swiper.eventsAnyListeners = [];
-            swiper.modules = [ ...swiper.__modules__ ];
+            swiper.modules = [...swiper.__modules__];
             if (params.modules && Array.isArray(params.modules)) swiper.modules.push(...params.modules);
             const allModulesParams = {};
             swiper.modules.forEach((mod => {
@@ -3140,8 +3140,8 @@
                 allowSlideNext: swiper.params.allowSlideNext,
                 allowSlidePrev: swiper.params.allowSlidePrev,
                 touchEvents: function touchEvents() {
-                    const touch = [ "touchstart", "touchmove", "touchend", "touchcancel" ];
-                    const desktop = [ "pointerdown", "pointermove", "pointerup" ];
+                    const touch = ["touchstart", "touchmove", "touchend", "touchcancel"];
+                    const desktop = ["pointerdown", "pointermove", "pointerup"];
                     swiper.touchEventsTouch = {
                         start: touch[0],
                         move: touch[1],
@@ -3239,7 +3239,7 @@
         }
         slidesPerViewDynamic(view = "current", exact = false) {
             const swiper = this;
-            const {params, slides, slidesGrid, slidesSizesGrid, size: swiperSize, activeIndex} = swiper;
+            const { params, slides, slidesGrid, slidesSizesGrid, size: swiperSize, activeIndex } = swiper;
             let spv = 1;
             if (params.centeredSlides) {
                 let slideSize = slides[activeIndex].swiperSlideSize;
@@ -3266,7 +3266,7 @@
         update() {
             const swiper = this;
             if (!swiper || swiper.destroyed) return;
-            const {snapGrid, params} = swiper;
+            const { snapGrid, params } = swiper;
             if (params.breakpoints) swiper.setBreakpoint();
             swiper.updateSize();
             swiper.updateSlides();
@@ -3382,7 +3382,7 @@
         }
         destroy(deleteInstance = true, cleanStyles = true) {
             const swiper = this;
-            const {params, $el, $wrapperEl, slides} = swiper;
+            const { params, $el, $wrapperEl, slides } = swiper;
             if ("undefined" === typeof swiper.params || swiper.destroyed) return null;
             swiper.emit("beforeDestroy");
             swiper.initialized = false;
@@ -3392,7 +3392,7 @@
                 swiper.removeClasses();
                 $el.removeAttr("style");
                 $wrapperEl.removeAttr("style");
-                if (slides && slides.length) slides.removeClass([ params.slideVisibleClass, params.slideActiveClass, params.slideNextClass, params.slidePrevClass ].join(" ")).removeAttr("style").removeAttr("data-swiper-slide-index");
+                if (slides && slides.length) slides.removeClass([params.slideVisibleClass, params.slideActiveClass, params.slideNextClass, params.slidePrevClass].join(" ")).removeAttr("style").removeAttr("data-swiper-slide-index");
             }
             swiper.emit("destroy");
             Object.keys(swiper.eventsListeners).forEach((eventName => {
@@ -3433,7 +3433,7 @@
             core_Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
         }));
     }));
-    core_Swiper.use([ Resize, Observer ]);
+    core_Swiper.use([Resize, Observer]);
     const core = core_Swiper;
     function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
         const document = ssr_window_esm_getDocument();
@@ -3451,7 +3451,7 @@
         }));
         return params;
     }
-    function Navigation({swiper, extendParams, on, emit}) {
+    function Navigation({ swiper, extendParams, on, emit }) {
         extendParams({
             navigation: {
                 nextEl: null,
@@ -3487,7 +3487,7 @@
         }
         function update() {
             if (swiper.params.loop) return;
-            const {$nextEl, $prevEl} = swiper.navigation;
+            const { $nextEl, $prevEl } = swiper.navigation;
             toggleEl($prevEl, swiper.isBeginning && !swiper.params.rewind);
             toggleEl($nextEl, swiper.isEnd && !swiper.params.rewind);
         }
@@ -3526,7 +3526,7 @@
             }
         }
         function destroy() {
-            const {$nextEl, $prevEl} = swiper.navigation;
+            const { $nextEl, $prevEl } = swiper.navigation;
             if ($nextEl && $nextEl.length) {
                 $nextEl.off("click", onNextClick);
                 $nextEl.removeClass(swiper.params.navigation.disabledClass);
@@ -3549,12 +3549,12 @@
             destroy();
         }));
         on("enable disable", (() => {
-            const {$nextEl, $prevEl} = swiper.navigation;
+            const { $nextEl, $prevEl } = swiper.navigation;
             if ($nextEl) $nextEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
             if ($prevEl) $prevEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
         }));
         on("click", ((_s, e) => {
-            const {$nextEl, $prevEl} = swiper.navigation;
+            const { $nextEl, $prevEl } = swiper.navigation;
             const targetEl = e.target;
             if (swiper.params.navigation.hideOnClick && !dom(targetEl).is($prevEl) && !dom(targetEl).is($nextEl)) {
                 if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
@@ -3584,7 +3584,7 @@
     }
     function initSliders() {
         if (document.querySelector(".projects")) new core(".projects", {
-            modules: [ Navigation ],
+            modules: [Navigation],
             observer: true,
             observeParents: false,
             slidesPerView: "auto",
@@ -3630,7 +3630,7 @@
             on: {}
         });
         if (document.querySelector(".gallerySlider")) new core(".gallerySlider", {
-            modules: [ Navigation ],
+            modules: [Navigation],
             observer: true,
             observeParents: true,
             slidesPerView: "auto",
@@ -3675,7 +3675,7 @@
             on: {}
         });
         if (document.querySelector(".review")) new core(".review", {
-            modules: [ Navigation ],
+            modules: [Navigation],
             observer: true,
             observeParents: true,
             slidesPerView: "auto",
@@ -3716,7 +3716,7 @@
             on: {}
         });
     }
-    window.addEventListener("load", (function(e) {
+    window.addEventListener("load", (function (e) {
         initSliders();
     }));
     let addWindowScrollEvent = false;
@@ -3761,7 +3761,7 @@
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
-            window.addEventListener("scroll", (function(e) {
+            window.addEventListener("scroll", (function (e) {
                 document.dispatchEvent(windowScroll);
             }));
         }
@@ -3769,7 +3769,7 @@
     function DynamicAdapt(type) {
         this.type = type;
     }
-    DynamicAdapt.prototype.init = function() {
+    DynamicAdapt.prototype.init = function () {
         const _this = this;
         this.оbjects = [];
         this.daClassname = "_dynamic_adapt_";
@@ -3788,10 +3788,10 @@
             this.оbjects.push(оbject);
         }
         this.arraySort(this.оbjects);
-        this.mediaQueries = Array.prototype.map.call(this.оbjects, (function(item) {
+        this.mediaQueries = Array.prototype.map.call(this.оbjects, (function (item) {
             return "(" + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
         }), this);
-        this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, (function(item, index, self) {
+        this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, (function (item, index, self) {
             return Array.prototype.indexOf.call(self, item) === index;
         }));
         for (let i = 0; i < this.mediaQueries.length; i++) {
@@ -3799,16 +3799,16 @@
             const mediaSplit = String.prototype.split.call(media, ",");
             const matchMedia = window.matchMedia(mediaSplit[0]);
             const mediaBreakpoint = mediaSplit[1];
-            const оbjectsFilter = Array.prototype.filter.call(this.оbjects, (function(item) {
+            const оbjectsFilter = Array.prototype.filter.call(this.оbjects, (function (item) {
                 return item.breakpoint === mediaBreakpoint;
             }));
-            matchMedia.addListener((function() {
+            matchMedia.addListener((function () {
                 _this.mediaHandler(matchMedia, оbjectsFilter);
             }));
             this.mediaHandler(matchMedia, оbjectsFilter);
         }
     };
-    DynamicAdapt.prototype.mediaHandler = function(matchMedia, оbjects) {
+    DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
         if (matchMedia.matches) for (let i = 0; i < оbjects.length; i++) {
             const оbject = оbjects[i];
             оbject.index = this.indexInParent(оbject.parent, оbject.element);
@@ -3818,7 +3818,7 @@
             if (оbject.element.classList.contains(this.daClassname)) this.moveBack(оbject.parent, оbject.element, оbject.index);
         }
     };
-    DynamicAdapt.prototype.moveTo = function(place, element, destination) {
+    DynamicAdapt.prototype.moveTo = function (place, element, destination) {
         element.classList.add(this.daClassname);
         if ("last" === place || place >= destination.children.length) {
             destination.insertAdjacentElement("beforeend", element);
@@ -3830,16 +3830,16 @@
         }
         destination.children[place].insertAdjacentElement("beforebegin", element);
     };
-    DynamicAdapt.prototype.moveBack = function(parent, element, index) {
+    DynamicAdapt.prototype.moveBack = function (parent, element, index) {
         element.classList.remove(this.daClassname);
         if (void 0 !== parent.children[index]) parent.children[index].insertAdjacentElement("beforebegin", element); else parent.insertAdjacentElement("beforeend", element);
     };
-    DynamicAdapt.prototype.indexInParent = function(parent, element) {
+    DynamicAdapt.prototype.indexInParent = function (parent, element) {
         const array = Array.prototype.slice.call(parent.children);
         return Array.prototype.indexOf.call(array, element);
     };
-    DynamicAdapt.prototype.arraySort = function(arr) {
-        if ("min" === this.type) Array.prototype.sort.call(arr, (function(a, b) {
+    DynamicAdapt.prototype.arraySort = function (arr) {
+        if ("min" === this.type) Array.prototype.sort.call(arr, (function (a, b) {
             if (a.breakpoint === b.breakpoint) {
                 if (a.place === b.place) return 0;
                 if ("first" === a.place || "last" === b.place) return -1;
@@ -3848,7 +3848,7 @@
             }
             return a.breakpoint - b.breakpoint;
         })); else {
-            Array.prototype.sort.call(arr, (function(a, b) {
+            Array.prototype.sort.call(arr, (function (a, b) {
                 if (a.breakpoint === b.breakpoint) {
                     if (a.place === b.place) return 0;
                     if ("first" === a.place || "last" === b.place) return 1;
@@ -3932,7 +3932,7 @@
         }));
     }));
     function createReviewsSlide() {
-        const dataSlide = [ {
+        const dataSlide = [{
             photo: '<img src="img/feedbackAutorIcon/Photo1.png" alt="">',
             name: "Авралеева И. В.",
             role: "Управляющая персоналом",
@@ -3953,7 +3953,7 @@
             content: "“...Продукция была доставлена вовремя. Менеджеры монтажники проявили доброжелательность в решении наших вопросов, поэтому мы планируем дальше сотрудничать с Вами.<br><br>Также благодарим Вас за оказание информационной поддержки и помощь в открытии парка.”",
             company: "ООО “Батутный центр”, г. Таганрог",
             link: "#"
-        } ];
+        }];
         let slide = "";
         let reviewsWrapperOfSlider = document.getElementById("reviewsWrapperSlider");
         dataSlide.forEach((data => {
@@ -3963,7 +3963,7 @@
     }
     createReviewsSlide();
     function createUsProjectSlide() {
-        const dataSlide = [ {
+        const dataSlide = [{
             photo: '<img src="img/usProjectCard/Olympus.png" alt="">',
             title: 'ТРЦ "Олимп"',
             place: "Сочи",
@@ -3983,7 +3983,7 @@
             title: 'ТРЦ "Планета"',
             place: "Красноярск",
             square: "3200"
-        } ];
+        }];
         let slide = "";
         let projectWrapperOfSlider = document.getElementById("projectWrapperSlider");
         dataSlide.forEach((data => {
@@ -3992,7 +3992,7 @@
         projectWrapperOfSlider.insertAdjacentHTML("afterbegin", slide);
     }
     createUsProjectSlide();
-    const dataProjectContent = [ {
+    const dataProjectContent = [{
         title: "Ванана парк. Москва.",
         informationItem: {
             cityName: "Москва",
@@ -4001,14 +4001,14 @@
             Implementation: "6 месяцев"
         },
         description: "Выше реализованные, уже открытые наши парки – их нужно круто показать в разделе реализованные проекты. Т.е мы показываем, что мы уже имеем крутой опыт открывать , производить, устанавливать и главное, эксплуатировать, развлекательные центры."
-    } ];
+    }];
     let dataProjectContentInner = "";
     let projectContentInner = document.getElementById("projectContent");
     dataProjectContent.forEach((data => {
         dataProjectContentInner += `\n\t\t<div class="project-content__wrap">\n\t\t<button data-close type="button" class="popup__close gallery-close"><img src="img/Close-sea-blue.svg" alt=""></button>\n\t\t\t\t\t<div class="project-content__container">\n\t\t\t\t\t\t<div class="project-content__title">${data.title}</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="gallery__slider gallerySlider">\n\t\t\t\t<div class="gallery__wrapper swiper-wrapper">\n\t\t\t\t\t<div class="gallery__slide swiper-slide">\n\t\t\t\t\t\t<img src="img/usProjectCard/444.png" alt="">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="gallery__slide swiper-slide">\n\t\t\t\t\t\t<img src="img/usProjectCard/444.png" alt="">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="gallery__slide swiper-slide">\n\t\t\t\t\t\t<img src="img/usProjectCard/444.png" alt="">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="gallery__slide swiper-slide">\n\t\t\t\t\t\t<img src="img/usProjectCard/444.png" alt="">\n\t\t\t\t\t</div>\n\n\n\t\t\t\t</div>\n\t\t\t\t<button type="button" class="swiper-gallery-button-prev"><img src="img/circle-left.svg" alt="">\n\t\t\t\t</button>\n\t\t\t\t<button type="button" class="swiper-gallery-button-next"> <img src="img/circle-right.svg" alt=""></button>\n\t\t\t</div>\n\t\t\t\t\t<div class="project-content__container">\n\t\t\t\t\t\t<div class="project-content__information information-content-card">\n\t\t\t\t\t\t\t<div class="information-content-card__item">\n\t\t\t\t\t\t\t\t<div class="information-content-card__characteristic">Город</div>\n\t\t\t\t\t\t\t\t<div class="information-content-card__meaning">${data.informationItem.cityName}</div>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div class="information-content-card__item">\n\t\t\t\t\t\t\t\t<div class="information-content-card__characteristic">Вместимость</div>\n\t\t\t\t\t\t\t\t<div class="information-content-card__meaning">${data.informationItem.capacity} чел</div>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div class="information-content-card__item">\n\t\t\t\t\t\t\t\t<div class="information-content-card__characteristic">Площадь</div>\n\t\t\t\t\t\t\t\t<div class="information-content-card__meaning">${data.informationItem.square} м<sup>2</sup></div>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div class="information-content-card__item">\n\t\t\t\t\t\t\t\t<div class="information-content-card__characteristic">Реализация</div>\n\t\t\t\t\t\t\t\t<div class="information-content-card__meaning">${data.informationItem.Implementation}</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="project-content__description description-content-card">\n\t\t\t\t\t\t\t<div class="description-content-card__title">Описание проекта</div>\n\t\t\t\t\t\t\t<div class="description-content-card__text">${data.description}</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="project-content__attractions attractions-content-card">\n\t\t\t\t\t\t\t<div class="attractions-content-card__title">Основные аттракционы</div>\n\t\t\t\t\t\t\t<div class="attractions-content-card__wrap" id="attractionWrap">\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t`;
     }));
     projectContentInner.insertAdjacentHTML("afterbegin", dataProjectContentInner);
-    const dataAttractionContent = [ {
+    const dataAttractionContent = [{
         image: '<img src="img/mainAttractions/bigMaze.png" alt="">',
         nameAttraction: "Большой лабиринт",
         sizeAttraction: "20,4*14,4*5,5 м"
@@ -4040,7 +4040,7 @@
         image: '<img src="img/mainAttractions/dryPool.png" alt="">',
         nameAttraction: "Сухой бассейн",
         sizeAttraction: "15 м<sup>2</sup>"
-    } ];
+    }];
     let dataAttractionContentInner = "";
     let attractionWrap = document.getElementById("attractionWrap");
     dataAttractionContent.forEach((information => {
@@ -4058,7 +4058,7 @@
             nm: "Stairs",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -4078,7 +4078,7 @@
                     },
                     p: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
                                 x: .429,
                                 y: 1
@@ -4088,9 +4088,9 @@
                                 y: 0
                             },
                             t: 11,
-                            s: [ 29.5, 32.5, 0 ],
-                            to: [ 2.812, -6.562, 0 ],
-                            ti: [ -2.812, 6.562, 0 ]
+                            s: [29.5, 32.5, 0],
+                            to: [2.812, -6.562, 0],
+                            ti: [-2.812, 6.562, 0]
                         }, {
                             i: {
                                 x: .619,
@@ -4101,9 +4101,9 @@
                                 y: .333
                             },
                             t: 33,
-                            s: [ 46.375, -6.875, 0 ],
-                            to: [ 0, 0, 0 ],
-                            ti: [ 0, 0, 0 ]
+                            s: [46.375, -6.875, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
                         }, {
                             i: {
                                 x: .462,
@@ -4114,39 +4114,39 @@
                                 y: 0
                             },
                             t: 106,
-                            s: [ 46.375, -6.875, 0 ],
-                            to: [ -2.812, 6.562, 0 ],
-                            ti: [ 2.812, -6.562, 0 ]
+                            s: [46.375, -6.875, 0],
+                            to: [-2.812, 6.562, 0],
+                            ti: [2.812, -6.562, 0]
                         }, {
                             t: 123,
-                            s: [ 29.5, 32.5, 0 ]
-                        } ],
+                            s: [29.5, 32.5, 0]
+                        }],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 32.5, 0 ],
+                        k: [29.5, 32.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -29.284, 15.702 ], [ -21.93, 18.85 ], [ -17.214, 7.835 ], [ 6.186, 17.93 ], [ 1.463, 28.964 ], [ 8.817, 32.111 ], [ 29.284, -15.695 ], [ 29.284, -15.704 ], [ 21.934, -18.852 ], [ 17.204, -7.803 ], [ -6.196, -17.896 ], [ -1.458, -28.964 ], [ -8.813, -32.111 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-29.284, 15.702], [-21.93, 18.85], [-17.214, 7.835], [6.186, 17.93], [1.463, 28.964], [8.817, 32.111], [29.284, -15.695], [29.284, -15.704], [21.934, -18.852], [17.204, -7.803], [-6.196, -17.896], [-1.458, -28.964], [-8.813, -32.111]],
                                 c: true
                             },
                             ix: 2
@@ -4161,9 +4161,9 @@
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -14.065, .482 ], [ -9.345, -10.542 ], [ 14.055, -.449 ], [ 9.336, 10.576 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-14.065, .482], [-9.345, -10.542], [14.055, -.449], [9.336, 10.576]],
                                 c: true
                             },
                             ix: 2
@@ -4181,7 +4181,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -4198,17 +4198,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.716, 32.879 ],
+                            k: [29.716, 32.879],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -4232,7 +4232,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 4,
                     cix: 2,
@@ -4240,7 +4240,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -4259,74 +4259,74 @@
                     },
                     r: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .407 ],
-                                y: [ 1 ]
+                                x: [.407],
+                                y: [1]
                             },
                             o: {
-                                x: [ .625 ],
-                                y: [ 0 ]
+                                x: [.625],
+                                y: [0]
                             },
                             t: 0,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .626 ],
-                                y: [ 1 ]
+                                x: [.626],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 14,
-                            s: [ 51 ]
+                            s: [51]
                         }, {
                             i: {
-                                x: [ .399 ],
-                                y: [ 1 ]
+                                x: [.399],
+                                y: [1]
                             },
                             o: {
-                                x: [ .548 ],
-                                y: [ 0 ]
+                                x: [.548],
+                                y: [0]
                             },
                             t: 118,
-                            s: [ 51 ]
+                            s: [51]
                         }, {
                             t: 131,
-                            s: [ 0 ]
-                        } ],
+                            s: [0]
+                        }],
                         ix: 10
                     },
                     p: {
                         a: 0,
-                        k: [ 21, 57.76, 0 ],
+                        k: [21, 57.76, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 20, 56.25, 0 ],
+                        k: [20, 56.25, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -29.284, 15.702 ], [ -21.93, 18.85 ], [ -17.214, 7.835 ], [ 6.186, 17.93 ], [ 1.463, 28.964 ], [ 8.817, 32.111 ], [ 29.284, -15.695 ], [ 29.284, -15.704 ], [ 21.934, -18.852 ], [ 17.204, -7.803 ], [ -6.196, -17.896 ], [ -1.458, -28.964 ], [ -8.813, -32.111 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-29.284, 15.702], [-21.93, 18.85], [-17.214, 7.835], [6.186, 17.93], [1.463, 28.964], [8.817, 32.111], [29.284, -15.695], [29.284, -15.704], [21.934, -18.852], [17.204, -7.803], [-6.196, -17.896], [-1.458, -28.964], [-8.813, -32.111]],
                                 c: true
                             },
                             ix: 2
@@ -4341,9 +4341,9 @@
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -14.065, .482 ], [ -9.345, -10.542 ], [ 14.055, -.449 ], [ 9.336, 10.576 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-14.065, .482], [-9.345, -10.542], [14.055, -.449], [9.336, 10.576]],
                                 c: true
                             },
                             ix: 2
@@ -4361,7 +4361,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -4378,17 +4378,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.716, 32.879 ],
+                            k: [29.716, 32.879],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -4412,7 +4412,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 4,
                     cix: 2,
@@ -4420,12 +4420,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -4449,7 +4449,7 @@
             nm: "Smile",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -4469,30 +4469,30 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 29.5, 29.5, 0 ],
+                        k: [29.5, 29.5, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 29.5, 0 ],
+                        k: [29.5, 29.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
                                     x: .833,
                                     y: .833
@@ -4502,12 +4502,12 @@
                                     y: .167
                                 },
                                 t: 10,
-                                s: [ {
-                                    i: [ [ -5.247, 0 ], [ 0, -5.247 ], [ 5.247, 0 ], [ 0, 5.247 ] ],
-                                    o: [ [ 5.247, 0 ], [ 0, 5.247 ], [ -5.247, 0 ], [ 0, -5.247 ] ],
-                                    v: [ [ 0, -9.5 ], [ 9.5, 0 ], [ 0, 9.5 ], [ -9.5, 0 ] ],
+                                s: [{
+                                    i: [[-5.247, 0], [0, -5.247], [5.247, 0], [0, 5.247]],
+                                    o: [[5.247, 0], [0, 5.247], [-5.247, 0], [0, -5.247]],
+                                    v: [[0, -9.5], [9.5, 0], [0, 9.5], [-9.5, 0]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -4518,12 +4518,12 @@
                                     y: .167
                                 },
                                 t: 11,
-                                s: [ {
-                                    i: [ [ -10.722, -.122 ], [ 0, -5.247 ], [ 5.247, 0 ], [ 0, 5.247 ] ],
-                                    o: [ [ 11.473, .131 ], [ 0, 5.247 ], [ -5.247, 0 ], [ 0, -5.247 ] ],
-                                    v: [ [ -.132, 9.703 ], [ 9.5, 0 ], [ 0, 9.5 ], [ -9.5, 0 ] ],
+                                s: [{
+                                    i: [[-10.722, -.122], [0, -5.247], [5.247, 0], [0, 5.247]],
+                                    o: [[11.473, .131], [0, 5.247], [-5.247, 0], [0, -5.247]],
+                                    v: [[-.132, 9.703], [9.5, 0], [0, 9.5], [-9.5, 0]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -4534,21 +4534,21 @@
                                     y: .167
                                 },
                                 t: 36,
-                                s: [ {
-                                    i: [ [ -10.722, -.122 ], [ 0, -5.247 ], [ 5.247, 0 ], [ 0, 5.247 ] ],
-                                    o: [ [ 11.473, .131 ], [ 0, 5.247 ], [ -5.247, 0 ], [ 0, -5.247 ] ],
-                                    v: [ [ -.132, 9.703 ], [ 9.5, 0 ], [ 0, 9.5 ], [ -9.5, 0 ] ],
+                                s: [{
+                                    i: [[-10.722, -.122], [0, -5.247], [5.247, 0], [0, 5.247]],
+                                    o: [[11.473, .131], [0, 5.247], [-5.247, 0], [0, -5.247]],
+                                    v: [[-.132, 9.703], [9.5, 0], [0, 9.5], [-9.5, 0]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 t: 37,
-                                s: [ {
-                                    i: [ [ -5.247, 0 ], [ 0, -5.247 ], [ 5.247, 0 ], [ 0, 5.247 ] ],
-                                    o: [ [ 5.247, 0 ], [ 0, 5.247 ], [ -5.247, 0 ], [ 0, -5.247 ] ],
-                                    v: [ [ 0, -9.5 ], [ 9.5, 0 ], [ 0, 9.5 ], [ -9.5, 0 ] ],
+                                s: [{
+                                    i: [[-5.247, 0], [0, -5.247], [5.247, 0], [0, 5.247]],
+                                    o: [[5.247, 0], [0, 5.247], [-5.247, 0], [0, -5.247]],
+                                    v: [[0, -9.5], [9.5, 0], [0, 9.5], [-9.5, 0]],
                                     c: true
-                                } ]
-                            } ],
+                                }]
+                            }],
                             ix: 2
                         },
                         nm: "Path 1",
@@ -4558,7 +4558,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -4582,17 +4582,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 45.5, 19.5 ],
+                            k: [45.5, 19.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -4616,7 +4616,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -4624,7 +4624,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -4643,48 +4643,48 @@
                     },
                     r: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .411 ],
-                                y: [ 1 ]
+                                x: [.411],
+                                y: [1]
                             },
                             o: {
-                                x: [ .491 ],
-                                y: [ 0 ]
+                                x: [.491],
+                                y: [0]
                             },
                             t: 0,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .411 ],
-                                y: [ 1 ]
+                                x: [.411],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 11,
-                            s: [ 23 ]
+                            s: [23]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 36,
-                            s: [ 23 ]
+                            s: [23]
                         }, {
                             t: 48,
-                            s: [ 0 ]
-                        } ],
+                            s: [0]
+                        }],
                         ix: 10
                     },
                     p: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
                                 x: .833,
                                 y: .833
@@ -4694,9 +4694,9 @@
                                 y: .167
                             },
                             t: 0,
-                            s: [ 34.975, 34.25, 0 ],
-                            to: [ 0, -.417, 0 ],
-                            ti: [ 0, 0, 0 ]
+                            s: [34.975, 34.25, 0],
+                            to: [0, -.417, 0],
+                            ti: [0, 0, 0]
                         }, {
                             i: {
                                 x: .833,
@@ -4707,9 +4707,9 @@
                                 y: .167
                             },
                             t: 5,
-                            s: [ 34.975, 31.75, 0 ],
-                            to: [ 0, 0, 0 ],
-                            ti: [ 0, -.417, 0 ]
+                            s: [34.975, 31.75, 0],
+                            to: [0, 0, 0],
+                            ti: [0, -.417, 0]
                         }, {
                             i: {
                                 x: .833,
@@ -4720,9 +4720,9 @@
                                 y: .167
                             },
                             t: 11,
-                            s: [ 34.975, 34.25, 0 ],
-                            to: [ 0, 0, 0 ],
-                            ti: [ 0, 0, 0 ]
+                            s: [34.975, 34.25, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
                         }, {
                             i: {
                                 x: .833,
@@ -4733,9 +4733,9 @@
                                 y: .167
                             },
                             t: 36,
-                            s: [ 34.975, 34.25, 0 ],
-                            to: [ 0, -.417, 0 ],
-                            ti: [ 0, 0, 0 ]
+                            s: [34.975, 34.25, 0],
+                            to: [0, -.417, 0],
+                            ti: [0, 0, 0]
                         }, {
                             i: {
                                 x: .833,
@@ -4746,39 +4746,39 @@
                                 y: .167
                             },
                             t: 41,
-                            s: [ 34.975, 31.75, 0 ],
-                            to: [ 0, 0, 0 ],
-                            ti: [ 0, -.417, 0 ]
+                            s: [34.975, 31.75, 0],
+                            to: [0, 0, 0],
+                            ti: [0, -.417, 0]
                         }, {
                             t: 48,
-                            s: [ 34.975, 34.25, 0 ]
-                        } ],
+                            s: [34.975, 34.25, 0]
+                        }],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 29.5, 0 ],
+                        k: [29.5, 29.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -5.247, 0 ], [ 0, -5.247 ], [ 5.247, 0 ], [ 0, 5.247 ] ],
-                                o: [ [ 5.247, 0 ], [ 0, 5.247 ], [ -5.247, 0 ], [ 0, -5.247 ] ],
-                                v: [ [ 0, -9.5 ], [ 9.5, 0 ], [ 0, 9.5 ], [ -9.5, 0 ] ],
+                                i: [[-5.247, 0], [0, -5.247], [5.247, 0], [0, 5.247]],
+                                o: [[5.247, 0], [0, 5.247], [-5.247, 0], [0, -5.247]],
+                                v: [[0, -9.5], [9.5, 0], [0, 9.5], [-9.5, 0]],
                                 c: true
                             },
                             ix: 2
@@ -4790,7 +4790,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -4814,17 +4814,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 13.5, 19.5 ],
+                            k: [13.5, 19.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -4848,7 +4848,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -4858,16 +4858,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 3.615, -1.934 ], [ 4.1, -.044 ], [ 3.658, 1.853 ], [ 2.388, 3.333 ] ],
-                                o: [ [ -2.314, 3.385 ], [ -3.616, 1.933 ], [ -4.1, .046 ], [ -3.657, -1.853 ], [ 0, 0 ] ],
-                                v: [ [ 20.889, -5.576 ], [ 11.864, 2.519 ], [ .12, 5.53 ], [ -11.687, 2.779 ], [ -20.889, -5.114 ] ],
+                                i: [[0, 0], [3.615, -1.934], [4.1, -.044], [3.658, 1.853], [2.388, 3.333]],
+                                o: [[-2.314, 3.385], [-3.616, 1.933], [-4.1, .046], [-3.657, -1.853], [0, 0]],
+                                v: [[20.889, -5.576], [11.864, 2.519], [.12, 5.53], [-11.687, 2.779], [-20.889, -5.114]],
                                 c: false
                             },
                             ix: 2
@@ -4879,7 +4879,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -4903,17 +4903,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.662, 49.468 ],
+                            k: [29.662, 49.468],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -4937,7 +4937,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 2",
                     np: 2,
                     cix: 2,
@@ -4945,12 +4945,12 @@
                     ix: 2,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -4974,7 +4974,7 @@
             nm: "Point",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -4993,47 +4993,47 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 35, 35, 0 ],
+                        k: [35, 35, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 29.5, 0 ],
+                        k: [29.5, 29.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 0,
-                            s: [ 0, 0, 100 ]
+                            s: [0, 0, 100]
                         }, {
                             t: 8,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -6.139, 0 ], [ 0, -6.138 ], [ 6.139, 0 ], [ 0, 6.139 ] ],
-                                o: [ [ 6.139, 0 ], [ 0, 6.139 ], [ -6.139, 0 ], [ 0, -6.138 ] ],
-                                v: [ [ 0, -11.115 ], [ 11.115, 0 ], [ 0, 11.115 ], [ -11.115, 0 ] ],
+                                i: [[-6.139, 0], [0, -6.138], [6.139, 0], [0, 6.139]],
+                                o: [[6.139, 0], [0, 6.139], [-6.139, 0], [0, -6.138]],
+                                v: [[0, -11.115], [11.115, 0], [0, 11.115], [-11.115, 0]],
                                 c: true
                             },
                             ix: 2
@@ -5045,7 +5045,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -5062,17 +5062,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.5, 29.5 ],
+                            k: [29.5, 29.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -5096,7 +5096,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -5104,7 +5104,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -5128,47 +5128,47 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 35, 35, 0 ],
+                        k: [35, 35, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 29.5, 0 ],
+                        k: [29.5, 29.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 4,
-                            s: [ 0, 0, 100 ]
+                            s: [0, 0, 100]
                         }, {
                             t: 21,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -14.083, 0 ], [ 0, -14.083 ], [ 14.083, 0 ], [ 0, 14.083 ] ],
-                                o: [ [ 14.083, 0 ], [ 0, 14.083 ], [ -14.083, 0 ], [ 0, -14.083 ] ],
-                                v: [ [ 0, -25.5 ], [ 25.5, 0 ], [ 0, 25.5 ], [ -25.5, 0 ] ],
+                                i: [[-14.083, 0], [0, -14.083], [14.083, 0], [0, 14.083]],
+                                o: [[14.083, 0], [0, 14.083], [-14.083, 0], [0, -14.083]],
+                                v: [[0, -25.5], [25.5, 0], [0, 25.5], [-25.5, 0]],
                                 c: true
                             },
                             ix: 2
@@ -5180,7 +5180,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -5204,17 +5204,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.5, 29.5 ],
+                            k: [29.5, 29.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -5238,7 +5238,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -5246,12 +5246,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -5275,7 +5275,7 @@
             nm: "Star",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -5294,80 +5294,80 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 35, 35, 0 ],
+                        k: [35, 35, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 27, 27, 0 ],
+                        k: [27, 27, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .432, .432, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.432, .432, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .567, .567, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.567, .567, .333],
+                                y: [0, 0, 0]
                             },
                             t: 0,
-                            s: [ 117, 117, 100 ]
+                            s: [117, 117, 100]
                         }, {
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 28,
-                            s: [ 90, 90, 100 ]
+                            s: [90, 90, 100]
                         }, {
                             i: {
-                                x: [ .833, .833, .833 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.833, .833, .833],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 58,
-                            s: [ 117, 117, 100 ]
+                            s: [117, 117, 100]
                         }, {
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 87,
-                            s: [ 100, 100, 100 ]
+                            s: [100, 100, 100]
                         }, {
                             t: 115,
-                            s: [ 117, 117, 100 ]
-                        } ],
+                            s: [117, 117, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -3.682, -27 ], [ -3.682, -3.682 ], [ -27, -3.682 ], [ -27, 4.318 ], [ -3.682, 4.318 ], [ -3.682, 27 ], [ 4.318, 27 ], [ 4.318, 4.318 ], [ 27, 4.318 ], [ 27, -3.682 ], [ 4.318, -3.682 ], [ 4.318, -27 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-3.682, -27], [-3.682, -3.682], [-27, -3.682], [-27, 4.318], [-3.682, 4.318], [-3.682, 27], [4.318, 27], [4.318, 4.318], [27, 4.318], [27, -3.682], [4.318, -3.682], [4.318, -27]],
                                 c: true
                             },
                             ix: 2
@@ -5379,7 +5379,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -5396,17 +5396,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 27, 27 ],
+                            k: [27, 27],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -5430,7 +5430,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -5438,7 +5438,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -5462,80 +5462,80 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 34.775, 35, 0 ],
+                        k: [34.775, 35, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 27, 27, 0 ],
+                        k: [27, 27, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .432, .432, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.432, .432, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .567, .567, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.567, .567, .333],
+                                y: [0, 0, 0]
                             },
                             t: 6,
-                            s: [ 117, 117, 100 ]
+                            s: [117, 117, 100]
                         }, {
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 34,
-                            s: [ 90, 90, 100 ]
+                            s: [90, 90, 100]
                         }, {
                             i: {
-                                x: [ .432, .432, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.432, .432, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 64,
-                            s: [ 117, 117, 100 ]
+                            s: [117, 117, 100]
                         }, {
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 93,
-                            s: [ 90, 90, 100 ]
+                            s: [90, 90, 100]
                         }, {
                             t: 121,
-                            s: [ 117, 117, 100 ]
-                        } ],
+                            s: [117, 117, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ .225, 5.656 ], [ 16.264, 21.695 ], [ 21.921, 16.038 ], [ 5.882, -.001 ], [ 21.92, -16.039 ], [ 16.264, -21.696 ], [ .225, -5.657 ], [ -16.263, -22.145 ], [ -21.92, -16.489 ], [ -5.432, -.001 ], [ -21.921, 16.488 ], [ -16.264, 22.145 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[.225, 5.656], [16.264, 21.695], [21.921, 16.038], [5.882, -.001], [21.92, -16.039], [16.264, -21.696], [.225, -5.657], [-16.263, -22.145], [-21.92, -16.489], [-5.432, -.001], [-21.921, 16.488], [-16.264, 22.145]],
                                 c: true
                             },
                             ix: 2
@@ -5547,7 +5547,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -5564,17 +5564,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 27.225, 27 ],
+                            k: [27.225, 27],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -5598,7 +5598,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -5606,12 +5606,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -5635,7 +5635,7 @@
             nm: "Heart",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -5654,58 +5654,58 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 30, 30, 0 ],
+                        k: [30, 30, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 26.5, 25, 0 ],
+                        k: [26.5, 25, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .442, .442, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.442, .442, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .537, .537, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.537, .537, .333],
+                                y: [0, 0, 0]
                             },
                             t: 0,
-                            s: [ 100, 100, 100 ]
+                            s: [100, 100, 100]
                         }, {
                             i: {
-                                x: [ .466, .466, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.466, .466, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .515, .515, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.515, .515, .333],
+                                y: [0, 0, 0]
                             },
                             t: 17,
-                            s: [ 90, 90, 100 ]
+                            s: [90, 90, 100]
                         }, {
                             t: 36,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ .65, 1.598 ], [ -.046, 1.724 ], [ -.733, 1.561 ], [ -1.297, 1.136 ], [ -1.644, .52 ], [ -1.715, -.183 ], [ -1.497, -.855 ], [ -1.029, -1.385 ], [ -1.496, .847 ], [ -1.71, .177 ], [ -1.639, -.522 ], [ -1.292, -1.133 ], [ -.732, -1.556 ], [ -.048, -1.718 ], [ .643, -1.594 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ -1.236, -1.203 ], [ -.65, -1.597 ], [ .045, -1.724 ], [ .733, -1.56 ], [ 1.298, -1.135 ], [ 1.645, -.521 ], [ 1.715, .183 ], [ 1.498, .856 ], [ 1.033, -1.374 ], [ 1.497, -.846 ], [ 1.71, -.178 ], [ 1.638, .521 ], [ 1.293, 1.133 ], [ .732, 1.555 ], [ .049, 1.718 ], [ -.643, 1.595 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -18.721, 1.499 ], [ -21.581, -2.747 ], [ -22.497, -7.781 ], [ -21.316, -12.762 ], [ -18.238, -16.852 ], [ -13.777, -19.361 ], [ -8.682, -19.874 ], [ -3.812, -18.299 ], [ .02, -14.904 ], [ 3.855, -18.27 ], [ 8.717, -19.822 ], [ 13.794, -19.299 ], [ 18.238, -16.792 ], [ 21.309, -12.715 ], [ 22.493, -7.753 ], [ 21.594, -2.73 ], [ 18.76, 1.514 ], [ .02, 20.057 ] ],
+                                i: [[0, 0], [.65, 1.598], [-.046, 1.724], [-.733, 1.561], [-1.297, 1.136], [-1.644, .52], [-1.715, -.183], [-1.497, -.855], [-1.029, -1.385], [-1.496, .847], [-1.71, .177], [-1.639, -.522], [-1.292, -1.133], [-.732, -1.556], [-.048, -1.718], [.643, -1.594], [0, 0], [0, 0]],
+                                o: [[-1.236, -1.203], [-.65, -1.597], [.045, -1.724], [.733, -1.56], [1.298, -1.135], [1.645, -.521], [1.715, .183], [1.498, .856], [1.033, -1.374], [1.497, -.846], [1.71, -.178], [1.638, .521], [1.293, 1.133], [.732, 1.555], [.049, 1.718], [-.643, 1.595], [0, 0], [0, 0]],
+                                v: [[-18.721, 1.499], [-21.581, -2.747], [-22.497, -7.781], [-21.316, -12.762], [-18.238, -16.852], [-13.777, -19.361], [-8.682, -19.874], [-3.812, -18.299], [.02, -14.904], [3.855, -18.27], [8.717, -19.822], [13.794, -19.299], [18.238, -16.792], [21.309, -12.715], [22.493, -7.753], [21.594, -2.73], [18.76, 1.514], [.02, 20.057]],
                                 c: true
                             },
                             ix: 2
@@ -5720,9 +5720,9 @@
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ .02, 20.057 ], [ -18.721, 1.499 ] ],
+                                i: [[0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0]],
+                                v: [[.02, 20.057], [-18.721, 1.499]],
                                 c: true
                             },
                             ix: 2
@@ -5740,7 +5740,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -5764,17 +5764,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 26.501, 23.944 ],
+                            k: [26.501, 23.944],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -5798,7 +5798,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 4,
                     cix: 2,
@@ -5806,12 +5806,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -5835,7 +5835,7 @@
             nm: "File",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -5855,30 +5855,30 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 23.5, 28, 0 ],
+                        k: [23.5, 28, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 23.5, 28, 0 ],
+                        k: [23.5, 28, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
                                     x: .667,
                                     y: 1
@@ -5888,12 +5888,12 @@
                                     y: 0
                                 },
                                 t: 9,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.614, -.961 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ .13, -8.644 ], [ 4.281, -1.406 ], [ 8.864, 6.393 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.614, -.961], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[.13, -8.644], [4.281, -1.406], [8.864, 6.393]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .667,
@@ -5904,12 +5904,12 @@
                                     y: 0
                                 },
                                 t: 15,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.818, -.243 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ -3.37, -10.144 ], [ -8.094, 6.094 ], [ 7.364, 10.143 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.818, -.243], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[-3.37, -10.144], [-8.094, 6.094], [7.364, 10.143]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -5920,12 +5920,12 @@
                                     y: 0
                                 },
                                 t: 24,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.818, -.243 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ -3.37, -10.144 ], [ -8.094, 6.094 ], [ 7.364, 10.143 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.818, -.243], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[-3.37, -10.144], [-8.094, 6.094], [7.364, 10.143]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .667,
@@ -5936,12 +5936,12 @@
                                     y: 0
                                 },
                                 t: 28,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.818, -.243 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ -3.37, -10.144 ], [ -5.344, 3.969 ], [ 7.364, 10.143 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.818, -.243], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[-3.37, -10.144], [-5.344, 3.969], [7.364, 10.143]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .667,
@@ -5952,12 +5952,12 @@
                                     y: 0
                                 },
                                 t: 31,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.818, -.243 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ -3.37, -10.144 ], [ -8.094, 6.094 ], [ 7.364, 10.143 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.818, -.243], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[-3.37, -10.144], [-8.094, 6.094], [7.364, 10.143]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -5968,21 +5968,21 @@
                                     y: 0
                                 },
                                 t: 73,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.818, -.243 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ -3.37, -10.144 ], [ -8.094, 6.094 ], [ 7.364, 10.143 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.818, -.243], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[-3.37, -10.144], [-8.094, 6.094], [7.364, 10.143]],
                                     c: false
-                                } ]
+                                }]
                             }, {
                                 t: 76,
-                                s: [ {
-                                    i: [ [ 0, 0 ], [ -.614, -.961 ], [ 0, 0 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                    v: [ [ .13, -8.644 ], [ 4.281, -1.406 ], [ 8.864, 6.393 ] ],
+                                s: [{
+                                    i: [[0, 0], [-.614, -.961], [0, 0]],
+                                    o: [[0, 0], [0, 0], [0, 0]],
+                                    v: [[.13, -8.644], [4.281, -1.406], [8.864, 6.393]],
                                     c: false
-                                } ]
-                            } ],
+                                }]
+                            }],
                             ix: 2
                         },
                         nm: "Path 1",
@@ -5992,7 +5992,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -6016,17 +6016,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 33.958, 17.741 ],
+                            k: [33.958, 17.741],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6050,7 +6050,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6058,7 +6058,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -6077,74 +6077,74 @@
                     },
                     r: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 0,
-                            s: [ -15 ]
+                            s: [-15]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 11,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 73,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             t: 85,
-                            s: [ -15 ]
-                        } ],
+                            s: [-15]
+                        }],
                         ix: 10
                     },
                     p: {
                         a: 0,
-                        k: [ 30, 29.5, 0 ],
+                        k: [30, 29.5, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 23.5, 28, 0 ],
+                        k: [23.5, 28, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 1.168, .349 ], [ 0, 0 ], [ .573, 1.093 ], [ -.357, 1.199 ], [ 0, 0 ], [ -1.079, .601 ], [ -1.168, -.349 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.079, -.601 ] ],
-                                o: [ [ 0, 0 ], [ -1.168, -.349 ], [ -.573, -1.094 ], [ 0, 0 ], [ .357, -1.199 ], [ 1.078, -.602 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.356, 1.198 ], [ -1.078, .602 ] ],
-                                v: [ [ 6.139, 23.615 ], [ -15.884, 17.051 ], [ -18.604, 14.799 ], [ -18.942, 11.219 ], [ -9.512, -20.41 ], [ -7.269, -23.219 ], [ -3.76, -23.615 ], [ 11.656, -19.02 ], [ 19.299, -4.441 ], [ 11.89, 20.41 ], [ 9.648, 23.219 ] ],
+                                i: [[1.168, .349], [0, 0], [.573, 1.093], [-.357, 1.199], [0, 0], [-1.079, .601], [-1.168, -.349], [0, 0], [0, 0], [0, 0], [1.079, -.601]],
+                                o: [[0, 0], [-1.168, -.349], [-.573, -1.094], [0, 0], [.357, -1.199], [1.078, -.602], [0, 0], [0, 0], [0, 0], [-.356, 1.198], [-1.078, .602]],
+                                v: [[6.139, 23.615], [-15.884, 17.051], [-18.604, 14.799], [-18.942, 11.219], [-9.512, -20.41], [-7.269, -23.219], [-3.76, -23.615], [11.656, -19.02], [19.299, -4.441], [11.89, 20.41], [9.648, 23.219]],
                                 c: true
                             },
                             ix: 2
@@ -6156,7 +6156,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -6180,17 +6180,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 23.294, 28.076 ],
+                            k: [23.294, 28.076],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6214,7 +6214,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6222,12 +6222,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -6251,7 +6251,7 @@
             nm: "Batut",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -6270,30 +6270,30 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 35, 27, 0 ],
+                        k: [35, 27, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 29.5, 22.5, 0 ],
+                        k: [29.5, 22.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
                                     x: .833,
                                     y: .833
@@ -6303,12 +6303,12 @@
                                     y: .167
                                 },
                                 t: 0,
-                                s: [ {
-                                    i: [ [ -1.691, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 1.69, 0 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ .375, -18.5 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-1.691, 0], [0, 0], [0, 0], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[0, 0], [0, 0], [1.69, 0], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [.375, -18.5], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -6319,12 +6319,12 @@
                                     y: .167
                                 },
                                 t: 13,
-                                s: [ {
-                                    i: [ [ -3.625, .25 ], [ -12.75, .5 ], [ -4.625, .25 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 3.625, -.25 ], [ 12.75, -.5 ], [ 4.625, -.25 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ -.25, -12.25 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-3.625, .25], [-12.75, .5], [-4.625, .25], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[3.625, -.25], [12.75, -.5], [4.625, -.25], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [-.25, -12.25], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -6335,12 +6335,12 @@
                                     y: .167
                                 },
                                 t: 27,
-                                s: [ {
-                                    i: [ [ -1.691, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 1.69, 0 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ .375, -18.5 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-1.691, 0], [0, 0], [0, 0], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[0, 0], [0, 0], [1.69, 0], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [.375, -18.5], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -6351,12 +6351,12 @@
                                     y: .167
                                 },
                                 t: 37,
-                                s: [ {
-                                    i: [ [ -1.691, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 1.69, 0 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ .375, -18.5 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-1.691, 0], [0, 0], [0, 0], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[0, 0], [0, 0], [1.69, 0], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [.375, -18.5], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -6367,12 +6367,12 @@
                                     y: .167
                                 },
                                 t: 52,
-                                s: [ {
-                                    i: [ [ -3.625, .25 ], [ -12.75, .5 ], [ -4.625, .25 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 3.625, -.25 ], [ 12.75, -.5 ], [ 4.625, -.25 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ -.25, -12.25 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-3.625, .25], [-12.75, .5], [-4.625, .25], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[3.625, -.25], [12.75, -.5], [4.625, -.25], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [-.25, -12.25], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 i: {
                                     x: .833,
@@ -6383,21 +6383,21 @@
                                     y: .167
                                 },
                                 t: 66,
-                                s: [ {
-                                    i: [ [ -1.691, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 1.69, 0 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ .375, -18.5 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-1.691, 0], [0, 0], [0, 0], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[0, 0], [0, 0], [1.69, 0], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [.375, -18.5], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
+                                }]
                             }, {
                                 t: 83,
-                                s: [ {
-                                    i: [ [ -1.691, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.195, -1.156 ], [ 0, -1.636 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ 2.39, 2.313 ], [ 3.382, 0 ], [ 2.391, -2.313 ], [ 0, -3.271 ], [ 0, 0 ], [ .598, -.578 ], [ .845, 0 ], [ 0, 0 ], [ .597, .578 ], [ 0, .817 ], [ 0, 0 ], [ -1.195, 1.157 ] ],
-                                    o: [ [ 0, 0 ], [ 0, 0 ], [ 1.69, 0 ], [ 1.195, 1.157 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.846, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -3.271 ], [ -2.392, -2.313 ], [ -3.381, 0 ], [ -2.391, 2.313 ], [ 0, 0 ], [ 0, .817 ], [ -.597, .578 ], [ 0, 0 ], [ -.845, 0 ], [ -.598, -.578 ], [ 0, 0 ], [ 0, -1.636 ], [ 1.195, -1.156 ] ],
-                                    v: [ [ -19.125, -18.5 ], [ .375, -18.5 ], [ 19.125, -18.5 ], [ 23.633, -16.694 ], [ 25.5, -12.333 ], [ 25.5, 15.417 ], [ 24.566, 17.597 ], [ 22.313, 18.5 ], [ 15.938, 18.5 ], [ 13.684, 17.597 ], [ 12.75, 15.417 ], [ 12.75, 9.25 ], [ 9.016, .529 ], [ 0, -3.083 ], [ -9.016, .529 ], [ -12.75, 9.25 ], [ -12.75, 15.417 ], [ -13.684, 17.597 ], [ -15.937, 18.5 ], [ -22.313, 18.5 ], [ -24.566, 17.597 ], [ -25.5, 15.417 ], [ -25.5, -12.333 ], [ -23.633, -16.694 ] ],
+                                s: [{
+                                    i: [[-1.691, 0], [0, 0], [0, 0], [-1.195, -1.156], [0, -1.636], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [2.39, 2.313], [3.382, 0], [2.391, -2.313], [0, -3.271], [0, 0], [.598, -.578], [.845, 0], [0, 0], [.597, .578], [0, .817], [0, 0], [-1.195, 1.157]],
+                                    o: [[0, 0], [0, 0], [1.69, 0], [1.195, 1.157], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.846, 0], [-.598, -.578], [0, 0], [0, -3.271], [-2.392, -2.313], [-3.381, 0], [-2.391, 2.313], [0, 0], [0, .817], [-.597, .578], [0, 0], [-.845, 0], [-.598, -.578], [0, 0], [0, -1.636], [1.195, -1.156]],
+                                    v: [[-19.125, -18.5], [.375, -18.5], [19.125, -18.5], [23.633, -16.694], [25.5, -12.333], [25.5, 15.417], [24.566, 17.597], [22.313, 18.5], [15.938, 18.5], [13.684, 17.597], [12.75, 15.417], [12.75, 9.25], [9.016, .529], [0, -3.083], [-9.016, .529], [-12.75, 9.25], [-12.75, 15.417], [-13.684, 17.597], [-15.937, 18.5], [-22.313, 18.5], [-24.566, 17.597], [-25.5, 15.417], [-25.5, -12.333], [-23.633, -16.694]],
                                     c: true
-                                } ]
-                            } ],
+                                }]
+                            }],
                             ix: 2
                         },
                         nm: "Path 1",
@@ -6407,7 +6407,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -6431,17 +6431,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 29.5, 22.5 ],
+                            k: [29.5, 22.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6465,7 +6465,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6473,12 +6473,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -6502,7 +6502,7 @@
             nm: "Arrow",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -6521,47 +6521,47 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 62, 7.75, 0 ],
+                        k: [62, 7.75, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 59.75, 4.75, 0 ],
+                        k: [59.75, 4.75, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667, .667, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.667, .667, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .333, .333, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.333, .333, .333],
+                                y: [0, 0, 0]
                             },
                             t: 2,
-                            s: [ 0, 0, 100 ]
+                            s: [0, 0, 100]
                         }, {
                             t: 13,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -10.5, -10.5 ], [ 10.5, -10.5 ], [ 10.5, 10.5 ] ],
+                                i: [[0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0]],
+                                v: [[-10.5, -10.5], [10.5, -10.5], [10.5, 10.5]],
                                 c: false
                             },
                             ix: 2
@@ -6573,7 +6573,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -6597,17 +6597,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 49.5, 14.5 ],
+                            k: [49.5, 14.5],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6631,7 +6631,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6639,7 +6639,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
@@ -6663,33 +6663,33 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 34.25, 23.5, 0 ],
+                        k: [34.25, 23.5, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 32, 20.5, 0 ],
+                        k: [32, 20.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -28.5, 16.75 ], [ -9.5, -2.25 ], [ 2.5, 9.25 ], [ 28.5, -16.75 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-28.5, 16.75], [-9.5, -2.25], [2.5, 9.25], [28.5, -16.75]],
                                 c: false
                             },
                             ix: 2
@@ -6701,7 +6701,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 3
                         },
                         o: {
@@ -6725,17 +6725,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 31.5, 20.75 ],
+                            k: [31.5, 20.75],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6759,7 +6759,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6776,21 +6776,21 @@
                     },
                     e: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 0,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             t: 19,
-                            s: [ 100 ]
-                        } ],
+                            s: [100]
+                        }],
                         ix: 2
                     },
                     o: {
@@ -6803,12 +6803,12 @@
                     nm: "Trim Paths 1",
                     mn: "ADBE Vector Filter - Trim",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 5761,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -6824,7 +6824,7 @@
     function purposeIconAnimation() {
         var animationData = {
             v: "5.6.2",
-            fr: 12,
+            fr: 7,
             ip: 0,
             op: 12,
             w: 566,
@@ -6832,7 +6832,7 @@
             nm: "icon_1",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -6853,67 +6853,67 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .455 ],
-                                    y: [ 1 ]
+                                    x: [.455],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .571 ],
-                                    y: [ 0 ]
+                                    x: [.571],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 335 ]
+                                s: [335]
                             }, {
                                 t: 4,
-                                s: [ 283 ]
-                            } ],
+                                s: [283]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .455 ],
-                                    y: [ 1 ]
+                                    x: [.455],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .571 ],
-                                    y: [ 0 ]
+                                    x: [.571],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 202 ]
+                                s: [202]
                             }, {
                                 t: 4,
-                                s: [ 250 ]
-                            } ],
+                                s: [250]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ 71.758, -71.871 ], [ -71.757, 71.871 ] ],
+                                i: [[0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0]],
+                                v: [[71.758, -71.871], [-71.757, 71.871]],
                                 c: false
                             },
                             ix: 2
@@ -6925,7 +6925,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .952999997606, .925, .493999974868, 1 ],
+                            k: [.952999997606, .925, .493999974868, 1],
                             ix: 3
                         },
                         o: {
@@ -6949,17 +6949,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 327.424, 204.09 ],
+                            k: [327.424, 204.09],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -6983,7 +6983,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -6993,16 +6993,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ 29.56, 29.607 ], [ 29.56, -29.607 ], [ -29.56, -29.607 ] ],
+                                i: [[0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0]],
+                                v: [[29.56, 29.607], [29.56, -29.607], [-29.56, -29.607]],
                                 c: false
                             },
                             ix: 2
@@ -7014,7 +7014,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .952999997606, .925, .493999974868, 1 ],
+                            k: [.952999997606, .925, .493999974868, 1],
                             ix: 3
                         },
                         o: {
@@ -7038,17 +7038,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 333.318, 199.84 ],
+                            k: [333.318, 199.84],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7072,7 +7072,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 2",
                     np: 2,
                     cix: 2,
@@ -7082,16 +7082,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ 29.561, 29.607 ], [ 29.561, -29.607 ], [ -29.56, -29.607 ] ],
+                                i: [[0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0]],
+                                v: [[29.561, 29.607], [29.561, -29.607], [-29.56, -29.607]],
                                 c: false
                             },
                             ix: 2
@@ -7103,7 +7103,7 @@
                         ty: "st",
                         c: {
                             a: 0,
-                            k: [ .952999997606, .925, .493999974868, 1 ],
+                            k: [.952999997606, .925, .493999974868, 1],
                             ix: 3
                         },
                         o: {
@@ -7127,17 +7127,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 373.88, 159.214 ],
+                            k: [373.88, 159.214],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7161,7 +7161,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 3",
                     np: 2,
                     cix: 2,
@@ -7169,7 +7169,7 @@
                     ix: 3,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -7193,91 +7193,91 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .419, .419, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.419, .419, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 0,
-                            s: [ 100, 100, 100 ]
+                            s: [100, 100, 100]
                         }, {
                             i: {
-                                x: [ .833, .833, .833 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.833, .833, .833],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 2,
-                            s: [ 100, 100, 100 ]
+                            s: [100, 100, 100]
                         }, {
                             i: {
-                                x: [ .419, .419, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.419, .419, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 5,
-                            s: [ 108, 108, 100 ]
+                            s: [108, 108, 100]
                         }, {
                             i: {
-                                x: [ .833, .833, .833 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.833, .833, .833],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 7,
-                            s: [ 100, 100, 100 ]
+                            s: [100, 100, 100]
                         }, {
                             i: {
-                                x: [ .419, .419, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.419, .419, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .167, .167, .167 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.167, .167, .167],
+                                y: [0, 0, 0]
                             },
                             t: 9,
-                            s: [ 108, 108, 100 ]
+                            s: [108, 108, 100]
                         }, {
                             t: 11,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -14.31, -.961 ], [ .922, -14.665 ], [ 14.31, .961 ], [ -.922, 14.666 ] ],
-                                o: [ [ 14.31, .96 ], [ -.922, 14.629 ], [ -14.311, -.96 ], [ .922, -14.629 ] ],
-                                v: [ [ 1.679, -26.523 ], [ 25.91, 1.773 ], [ -1.677, 26.523 ], [ -25.909, -1.773 ] ],
+                                i: [[-14.31, -.961], [.922, -14.665], [14.31, .961], [-.922, 14.666]],
+                                o: [[14.31, .96], [-.922, 14.629], [-14.311, -.96], [.922, -14.629]],
+                                v: [[1.679, -26.523], [25.91, 1.773], [-1.677, 26.523], [-25.909, -1.773]],
                                 c: true
                             },
                             ix: 2
@@ -7289,7 +7289,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -7306,17 +7306,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 259.679, 270.379 ],
+                            k: [259.679, 270.379],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7340,7 +7340,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -7350,16 +7350,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -25.301, -1.736 ], [ 1.623, -25.895 ], [ 25.338, 1.7 ], [ -1.623, 25.895 ] ],
-                                o: [ [ 25.301, 1.737 ], [ -1.623, 25.895 ], [ -25.301, -1.736 ], [ 1.66, -25.932 ] ],
-                                v: [ [ 2.951, -46.878 ], [ 45.844, 3.14 ], [ -2.951, 46.914 ], [ -45.844, -3.103 ] ],
+                                i: [[-25.301, -1.736], [1.623, -25.895], [25.338, 1.7], [-1.623, 25.895]],
+                                o: [[25.301, 1.737], [-1.623, 25.895], [-25.301, -1.736], [1.66, -25.932]],
+                                v: [[2.951, -46.878], [45.844, 3.14], [-2.951, 46.914], [-45.844, -3.103]],
                                 c: true
                             },
                             ix: 2
@@ -7371,7 +7371,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ 1, 1, 1, 1 ],
+                            k: [1, 1, 1, 1],
                             ix: 4
                         },
                         o: {
@@ -7388,17 +7388,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 259.698, 270.379 ],
+                            k: [259.698, 270.379],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7422,7 +7422,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 2",
                     np: 2,
                     cix: 2,
@@ -7432,16 +7432,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -39.279, -2.697 ], [ 2.545, -40.191 ], [ 39.317, 2.696 ], [ -2.545, 40.191 ] ],
-                                o: [ [ 39.279, 2.697 ], [ -2.545, 40.191 ], [ -39.316, -2.697 ], [ 2.508, -40.229 ] ],
-                                v: [ [ 4.574, -72.791 ], [ 71.146, 4.858 ], [ -4.61, 72.792 ], [ -71.145, -4.857 ] ],
+                                i: [[-39.279, -2.697], [2.545, -40.191], [39.317, 2.696], [-2.545, 40.191]],
+                                o: [[39.279, 2.697], [-2.545, 40.191], [-39.316, -2.697], [2.508, -40.229]],
+                                v: [[4.574, -72.791], [71.146, 4.858], [-4.61, 72.792], [-71.145, -4.857]],
                                 c: true
                             },
                             ix: 2
@@ -7453,7 +7453,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -7470,17 +7470,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 259.698, 270.397 ],
+                            k: [259.698, 270.397],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7504,7 +7504,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 3",
                     np: 2,
                     cix: 2,
@@ -7514,16 +7514,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -51.008, -3.509 ], [ 3.283, -52.198 ], [ 51.006, 3.472 ], [ -3.282, 52.196 ] ],
-                                o: [ [ 51.006, 3.472 ], [ -3.283, 52.196 ], [ -51.045, -3.509 ], [ 3.283, -52.198 ] ],
-                                v: [ [ 5.938, -94.494 ], [ 92.389, 6.318 ], [ -5.938, 94.531 ], [ -92.39, -6.316 ] ],
+                                i: [[-51.008, -3.509], [3.283, -52.198], [51.006, 3.472], [-3.282, 52.196]],
+                                o: [[51.006, 3.472], [-3.283, 52.196], [-51.045, -3.509], [3.283, -52.198]],
+                                v: [[5.938, -94.494], [92.389, 6.318], [-5.938, 94.531], [-92.39, -6.316]],
                                 c: true
                             },
                             ix: 2
@@ -7535,7 +7535,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ 1, 1, 1, 1 ],
+                            k: [1, 1, 1, 1],
                             ix: 4
                         },
                         o: {
@@ -7552,17 +7552,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 259.699, 270.379 ],
+                            k: [259.699, 270.379],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7586,7 +7586,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 4",
                     np: 2,
                     cix: 2,
@@ -7596,16 +7596,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -69.817, -4.765 ], [ 4.5, -71.407 ], [ 69.818, 4.765 ], [ -4.5, 71.405 ] ],
-                                o: [ [ 69.818, 4.765 ], [ -4.5, 71.405 ], [ -69.817, -4.765 ], [ 4.499, -71.444 ] ],
-                                v: [ [ 8.151, -129.329 ], [ 126.431, 8.608 ], [ -8.151, 129.329 ], [ -126.431, -8.606 ] ],
+                                i: [[-69.817, -4.765], [4.5, -71.407], [69.818, 4.765], [-4.5, 71.405]],
+                                o: [[69.818, 4.765], [-4.5, 71.405], [-69.817, -4.765], [4.499, -71.444]],
+                                v: [[8.151, -129.329], [126.431, 8.608], [-8.151, 129.329], [-126.431, -8.606]],
                                 c: true
                             },
                             ix: 2
@@ -7617,7 +7617,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -7634,17 +7634,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 259.699, 270.379 ],
+                            k: [259.699, 270.379],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7668,7 +7668,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 5",
                     np: 2,
                     cix: 2,
@@ -7676,12 +7676,12 @@
                     ix: 5,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -7697,7 +7697,7 @@
     function rocketIconAnimation() {
         var animationData = {
             v: "5.6.2",
-            fr: 24,
+            fr: 15,
             ip: 0,
             op: 18,
             w: 566,
@@ -7705,7 +7705,7 @@
             nm: "icon_2",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -7719,121 +7719,121 @@
                     },
                     r: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 0,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 2,
-                            s: [ 11 ]
+                            s: [11]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 4,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 6,
-                            s: [ 11 ]
+                            s: [11]
                         }, {
                             t: 8,
-                            s: [ 0 ]
-                        } ],
+                            s: [0]
+                        }],
                         ix: 10
                     },
                     p: {
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .408 ],
-                                    y: [ 1 ]
+                                    x: [.408],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .591 ],
-                                    y: [ 0 ]
+                                    x: [.591],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 192 ]
+                                s: [192]
                             }, {
                                 t: 15,
-                                s: [ 350 ]
-                            } ],
+                                s: [350]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .995 ],
-                                    y: [ 1 ]
+                                    x: [.995],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .005 ],
-                                    y: [ 0 ]
+                                    x: [.005],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 256 ]
+                                s: [256]
                             }, {
                                 t: 15,
-                                s: [ 256 ]
-                            } ],
+                                s: [256]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -11.668, -44.846 ], [ -9.903, 45.267 ], [ 11.668, 44.844 ], [ 9.902, -45.268 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-11.668, -44.846], [-9.903, 45.267], [11.668, 44.844], [9.902, -45.268]],
                                 c: true
                             },
                             ix: 2
@@ -7845,7 +7845,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ 1, 1, 1, 1 ],
+                            k: [1, 1, 1, 1],
                             ix: 4
                         },
                         o: {
@@ -7862,17 +7862,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 250.747, 257.548 ],
+                            k: [250.747, 257.548],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7896,7 +7896,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -7906,16 +7906,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -11.668, -44.845 ], [ -9.904, 45.267 ], [ 11.668, 44.844 ], [ 9.902, -45.267 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-11.668, -44.845], [-9.904, 45.267], [11.668, 44.844], [9.902, -45.267]],
                                 c: true
                             },
                             ix: 2
@@ -7927,7 +7927,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ 1, 1, 1, 1 ],
+                            k: [1, 1, 1, 1],
                             ix: 4
                         },
                         o: {
@@ -7944,17 +7944,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 271.452, 257.118 ],
+                            k: [271.452, 257.118],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -7978,7 +7978,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 2",
                     np: 2,
                     cix: 2,
@@ -7988,16 +7988,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -.349, -17.549 ], [ -17.483, .327 ], [ 0, 0 ] ],
-                                o: [ [ .349, 17.548 ], [ 0, 0 ], [ -17.483, .328 ] ],
-                                v: [ [ -15.955, .459 ], [ 16.305, 31.627 ], [ 15.061, -31.954 ] ],
+                                i: [[-.349, -17.549], [-17.483, .327], [0, 0]],
+                                o: [[.349, 17.548], [0, 0], [-17.483, .328]],
+                                v: [[-15.955, .459], [16.305, 31.627], [15.061, -31.954]],
                                 c: true
                             },
                             ix: 2
@@ -8009,7 +8009,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ 1, 1, 1, 1 ],
+                            k: [1, 1, 1, 1],
                             ix: 4
                         },
                         o: {
@@ -8026,17 +8026,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 209.619, 257.283 ],
+                            k: [209.619, 257.283],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8060,7 +8060,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 3",
                     np: 2,
                     cix: 2,
@@ -8070,16 +8070,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -29.442, .589 ], [ -1.025, -52.449 ], [ 51.402, -2.467 ], [ 18.269, 21.849 ], [ 14.471, -.284 ], [ .436, 23.179 ], [ -23.072, .459 ], [ -9.101, 11.633 ] ],
-                                o: [ [ 52.166, -1.048 ], [ 1.027, 51.707 ], [ -30.774, 1.484 ], [ -9.32, -11.153 ], [ -23.071, .458 ], [ -.459, -23.202 ], [ 14.71, -.305 ], [ 16.895, -21.565 ] ],
-                                v: [ [ 26.999, -95.098 ], [ 123.318, -2.051 ], [ 33.415, 94.661 ], [ -43.479, 60.895 ], [ -81.303, 44.025 ], [ -123.886, 2.882 ], [ -82.94, -39.943 ], [ -45.378, -58.865 ] ],
+                                i: [[-29.442, .589], [-1.025, -52.449], [51.402, -2.467], [18.269, 21.849], [14.471, -.284], [.436, 23.179], [-23.072, .459], [-9.101, 11.633]],
+                                o: [[52.166, -1.048], [1.027, 51.707], [-30.774, 1.484], [-9.32, -11.153], [-23.071, .458], [-.459, -23.202], [14.71, -.305], [16.895, -21.565]],
+                                v: [[26.999, -95.098], [123.318, -2.051], [33.415, 94.661], [-43.479, 60.895], [-81.303, 44.025], [-123.886, 2.882], [-82.94, -39.943], [-45.378, -58.865]],
                                 c: true
                             },
                             ix: 2
@@ -8091,7 +8091,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .952999997606, .925, .493999974868, 1 ],
+                            k: [.952999997606, .925, .493999974868, 1],
                             ix: 4
                         },
                         o: {
@@ -8108,17 +8108,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 366.052, 254.816 ],
+                            k: [366.052, 254.816],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8142,7 +8142,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 4",
                     np: 2,
                     cix: 2,
@@ -8152,16 +8152,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -3.121, 5.654 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 5.849, -.131 ], [ 0, 0 ] ],
-                                v: [ [ 68.568, -28.122 ], [ 37.268, -34.89 ], [ -68.567, 34.889 ], [ 21.663, 33.1 ], [ 36.046, 23.867 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [-3.121, 5.654]],
+                                o: [[0, 0], [0, 0], [0, 0], [5.849, -.131], [0, 0]],
+                                v: [[68.568, -28.122], [37.268, -34.89], [-68.567, 34.889], [21.663, 33.1], [36.046, 23.867]],
                                 c: true
                             },
                             ix: 2
@@ -8173,7 +8173,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -8190,17 +8190,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 214.588, 330.084 ],
+                            k: [214.588, 330.084],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8224,7 +8224,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 5",
                     np: 2,
                     cix: 2,
@@ -8234,16 +8234,16 @@
                     hd: false
                 }, {
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -3.361, -5.544 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 5.85, -.13 ], [ 0, 0 ] ],
-                                v: [ [ 69.757, 26.988 ], [ 38.72, 33.71 ], [ -69.757, -31.769 ], [ 20.451, -33.581 ], [ 35.184, -24.915 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [-3.361, -5.544]],
+                                o: [[0, 0], [0, 0], [0, 0], [5.85, -.13], [0, 0]],
+                                v: [[69.757, 26.988], [38.72, 33.71], [-69.757, -31.769], [20.451, -33.581], [35.184, -24.915]],
                                 c: true
                             },
                             ix: 2
@@ -8255,7 +8255,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -8272,17 +8272,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 211.63, 184.852 ],
+                            k: [211.63, 184.852],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8306,7 +8306,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 6",
                     np: 2,
                     cix: 2,
@@ -8314,7 +8314,7 @@
                     ix: 6,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -8338,47 +8338,47 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 344, 250, 0 ],
+                        k: [344, 250, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .425, .425, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.425, .425, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .681, .681, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.681, .681, .333],
+                                y: [0, 0, 0]
                             },
                             t: 6,
-                            s: [ 0, 0, 100 ]
+                            s: [0, 0, 100]
                         }, {
                             t: 17,
-                            s: [ 100, 100, 100 ]
-                        } ],
+                            s: [100, 100, 100]
+                        }],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ 62.391, -8.545 ], [ -33.973, -38.251 ], [ -17.559, -11.71 ], [ -62.674, 4.158 ], [ -26.618, 12.759 ], [ -32.467, 38.251 ], [ 62.674, 4.704 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[62.391, -8.545], [-33.973, -38.251], [-17.559, -11.71], [-62.674, 4.158], [-26.618, 12.759], [-32.467, 38.251], [62.674, 4.704]],
                                 c: true
                             },
                             ix: 2
@@ -8390,7 +8390,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .910000011968, .372999991623, .383999992819, 1 ],
+                            k: [.910000011968, .372999991623, .383999992819, 1],
                             ix: 4
                         },
                         o: {
@@ -8407,17 +8407,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 122.341, 260.306 ],
+                            k: [122.341, 260.306],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8441,7 +8441,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -8449,12 +8449,12 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -8470,7 +8470,7 @@
     function puzzlesIconAnimation() {
         var animationData = {
             v: "5.6.2",
-            fr: 24,
+            fr: 15,
             ip: 0,
             op: 21,
             w: 566,
@@ -8478,7 +8478,7 @@
             nm: "icon_3",
             ddd: 0,
             assets: [],
-            layers: [ {
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 4,
@@ -8499,67 +8499,67 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 187 ]
+                                s: [187]
                             }, {
                                 t: 15,
-                                s: [ 283 ]
-                            } ],
+                                s: [283]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 272 ]
+                                s: [272]
                             }, {
                                 t: 15,
-                                s: [ 254 ]
-                            } ],
+                                s: [254]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.4, .401 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .1 ], [ -.101, .2 ], [ -.1, .101 ], [ -.1, .101 ], [ -.1, .1 ], [ 0, 0 ], [ -.1, .2 ], [ -.4, .602 ], [ 0, 0 ], [ 0, 0 ], [ 0, .1 ], [ -.1, 0 ], [ 0, 0 ], [ 0, .1 ], [ -.1, .501 ], [ 0, .1 ], [ -.1, .1 ], [ 0, .1 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .502 ], [ 0, 0 ], [ 0, .201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, .401 ], [ 0, 0 ], [ 0, .301 ], [ 0, 0 ], [ .1, .1 ], [ 0, 0 ], [ .1, .201 ], [ 0, 0 ], [ 0, 0 ], [ .1, .3 ], [ .1, .1 ], [ 0, 0 ], [ 0, 0 ], [ 3, 1.805 ], [ 5.402, -1.404 ], [ .6, -.2 ], [ 0, 0 ], [ .5, -.2 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.1, -1.103 ], [ 0, 0 ], [ 1, -1.705 ], [ .3, -3.009 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.3, .803 ], [ 5.401, -1.504 ], [ 2.801, -4.915 ], [ -10.002, -5.817 ], [ -1.401, -.502 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .2, .1 ], [ 0, 0 ], [ .1, .101 ], [ 0, 0 ], [ .1, .101 ], [ 0, 0 ], [ .3, .1 ], [ 0, 0 ], [ .3, .201 ], [ .1, .1 ], [ 0, 0 ], [ .2, .1 ], [ .201, .2 ], [ 0, 0 ], [ 0, 0 ], [ .2, .1 ], [ 0, 0 ], [ 0, 0 ], [ .1, .101 ], [ 0, 0 ], [ .2, .101 ], [ 0, 0 ], [ .1, .2 ], [ 0, 0 ], [ 0, .101 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .2, .302 ], [ .4, .803 ], [ 0, 0 ], [ .1, .201 ], [ .4, 1.003 ], [ .1, .402 ], [ 0, 0 ], [ .1, 1.001 ], [ 0, 0 ], [ 0, 0 ], [ 0, .702 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, .3 ], [ 0, .401 ], [ -.1, .301 ], [ 0, 0 ], [ 0, .2 ], [ -.1, .401 ], [ 0, 0 ], [ 0, .1 ], [ 0, 0 ], [ -.2, .201 ], [ 0, 0 ], [ -.301, .302 ], [ -.1, .2 ], [ -.4, .702 ], [ -.2, .301 ], [ 0, .101 ], [ 0, 0 ], [ 0, 0 ], [ -.1, 0 ], [ 0, 0 ], [ -.1, .201 ], [ -.201, .1 ], [ -.2, .201 ], [ -.4, .301 ], [ 0, 0 ], [ 0, .1 ], [ -.1, .101 ], [ 0, 0 ], [ -.5, .401 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.1, 0 ], [ 0, 0 ], [ -.4, .201 ], [ -.2, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.801, .201 ], [ 0, 0 ], [ -.1, 0 ], [ -1, .101 ], [ 0, 0 ], [ -.401, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1, -.1 ], [ 0, 0 ], [ 0, 0 ], [ -.1, -.101 ], [ -.2, 0 ], [ 0, 0 ], [ -.2, 0 ], [ 0, 0 ], [ -1.2, -.403 ], [ 0, 0 ], [ -.3, -.201 ], [ -.3, -.1 ], [ 0, 0 ], [ -.2, -.1 ], [ -.9, -.502 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.8, -.602 ], [ 0, 0 ], [ -.2, -.201 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .4, -.301 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.101 ], [ .1, -.1 ], [ .2, -.201 ], [ .1, -.1 ], [ .1, -.1 ], [ 0, 0 ], [ .1, -.2 ], [ .3, -.401 ], [ 0, 0 ], [ 0, -.1 ], [ 0, -.101 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.1 ], [ .2, -.502 ], [ 0, -.101 ], [ 0, -.101 ], [ 0, -.101 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.501 ], [ 0, 0 ], [ 0, -.201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.401 ], [ 0, 0 ], [ 0, -.301 ], [ 0, 0 ], [ 0, -.1 ], [ 0, 0 ], [ -.1, -.101 ], [ 0, -.1 ], [ 0, 0 ], [ -.1, -.301 ], [ -.1, -.201 ], [ 0, 0 ], [ 0, 0 ], [ -1.8, -3.009 ], [ -4.801, -2.809 ], [ -.6, .201 ], [ 0, 0 ], [ -.6, .201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.3, .803 ], [ 0, 0 ], [ -1.401, 1.304 ], [ -1.5, 2.608 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.1, -1.003 ], [ -4.801, -2.808 ], [ -5.401, 1.404 ], [ -5.801, 9.929 ], [ 1.2, .701 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.102 ], [ 0, 0 ], [ -.1, -.1 ], [ 0, 0 ], [ -.1, -.099 ], [ 0, 0 ], [ -.3, -.099 ], [ 0, 0 ], [ -.3, -.201 ], [ -.2, -.1 ], [ 0, 0 ], [ -.2, -.101 ], [ -.2, -.102 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.1 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.101 ], [ 0, 0 ], [ -.1, -.101 ], [ 0, 0 ], [ -.2, -.2 ], [ 0, 0 ], [ 0, -.1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.301 ], [ -.4, -.701 ], [ 0, 0 ], [ -.1, -.201 ], [ -.4, -.802 ], [ -.2, -.501 ], [ 0, 0 ], [ -.3, -1.103 ], [ 0, 0 ], [ 0, 0 ], [ -.1, -.602 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.301 ], [ 0, -.2 ], [ 0, -.201 ], [ 0, 0 ], [ 0, -.201 ], [ 0, -.201 ], [ 0, 0 ], [ 0, -.201 ], [ 0, 0 ], [ .1, -.202 ], [ 0, 0 ], [ .2, -.3 ], [ .1, -.199 ], [ .5, -.903 ], [ .2, -.301 ], [ .1, -.1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.101 ], [ .2, -.201 ], [ .2, -.202 ], [ .3, -.301 ], [ 0, 0 ], [ 0, 0 ], [ .2, -.102 ], [ 0, 0 ], [ .4, -.401 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, 0 ], [ 0, 0 ], [ .2, -.1 ], [ .1, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .7, -.2 ], [ 0, 0 ], [ .1, 0 ], [ .8, -.2 ], [ 0, 0 ], [ .4, -.1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.1, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, 0 ], [ .2, 0 ], [ 0, 0 ], [ .2, 0 ], [ 0, 0 ], [ 1.2, .301 ], [ 0, 0 ], [ .3, .101 ], [ .3, .1 ], [ 0, 0 ], [ .2, .1 ], [ .7, .3 ], [ .1, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1, .601 ], [ 0, 0 ], [ .2, .1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ 82.767, -16.999 ], [ 78.866, -19.105 ], [ 42.359, -40.468 ], [ 41.659, -40.869 ], [ 50.361, -46.185 ], [ 51.561, -47.188 ], [ 51.76, -47.388 ], [ 52.76, -48.391 ], [ 53.061, -48.692 ], [ 53.361, -49.093 ], [ 53.762, -49.595 ], [ 54.062, -49.896 ], [ 54.361, -50.297 ], [ 54.562, -50.598 ], [ 54.962, -51.099 ], [ 55.962, -52.604 ], [ 56.161, -53.005 ], [ 56.262, -53.205 ], [ 56.361, -53.406 ], [ 56.462, -53.506 ], [ 57.161, -55.011 ], [ 57.262, -55.211 ], [ 57.762, -56.615 ], [ 57.861, -56.916 ], [ 58.062, -57.317 ], [ 58.161, -57.618 ], [ 58.161, -57.719 ], [ 58.161, -57.819 ], [ 58.562, -59.424 ], [ 58.562, -59.624 ], [ 58.663, -60.126 ], [ 58.762, -61.129 ], [ 58.762, -61.429 ], [ 58.762, -61.831 ], [ 58.762, -62.533 ], [ 58.762, -64.037 ], [ 58.663, -65.14 ], [ 58.562, -65.943 ], [ 58.463, -66.946 ], [ 57.962, -69.052 ], [ 57.861, -69.252 ], [ 57.562, -70.255 ], [ 57.361, -70.757 ], [ 57.262, -70.957 ], [ 57.062, -71.459 ], [ 56.661, -72.361 ], [ 56.361, -72.863 ], [ 56.262, -72.963 ], [ 55.962, -73.665 ], [ 48.661, -80.886 ], [ 32.956, -82.993 ], [ 31.057, -82.391 ], [ 30.857, -82.291 ], [ 29.157, -81.589 ], [ 29.057, -81.589 ], [ 28.956, -81.488 ], [ 28.757, -81.288 ], [ 28.056, -80.987 ], [ 24.355, -78.279 ], [ 24.056, -77.978 ], [ 20.454, -73.465 ], [ 17.654, -64.839 ], [ 16.754, -55.412 ], [ 16.554, -55.512 ], [ -21.153, -77.677 ], [ -39.357, -46.486 ], [ -44.858, -51.4 ], [ -48.459, -54.008 ], [ -64.262, -56.114 ], [ -76.965, -46.385 ], [ -69.363, -17.802 ], [ -65.362, -15.996 ], [ -58.361, -13.589 ], [ -78.065, 21.112 ], [ 23.055, 84.397 ], [ 26.156, 79.082 ], [ 35.458, 63.436 ], [ 35.258, 63.436 ], [ 34.058, 62.835 ], [ 33.458, 62.534 ], [ 33.157, 62.433 ], [ 32.757, 62.232 ], [ 32.657, 62.232 ], [ 32.257, 62.032 ], [ 31.657, 61.73 ], [ 30.857, 61.33 ], [ 30.757, 61.23 ], [ 29.857, 60.728 ], [ 29.357, 60.428 ], [ 29.257, 60.428 ], [ 28.757, 60.127 ], [ 28.156, 59.726 ], [ 27.656, 59.726 ], [ 26.156, 58.221 ], [ 25.656, 57.82 ], [ 25.355, 57.619 ], [ 24.756, 57.018 ], [ 24.355, 56.616 ], [ 23.055, 55.313 ], [ 22.655, 54.911 ], [ 22.055, 54.209 ], [ 21.655, 53.708 ], [ 20.855, 52.705 ], [ 20.755, 52.504 ], [ 20.555, 52.304 ], [ 20.355, 52.003 ], [ 20.155, 51.802 ], [ 19.855, 51.301 ], [ 19.255, 50.397 ], [ 17.954, 48.091 ], [ 17.654, 47.59 ], [ 17.354, 46.988 ], [ 16.254, 44.28 ], [ 15.754, 42.775 ], [ 15.354, 41.572 ], [ 14.754, 38.564 ], [ 14.754, 38.363 ], [ 14.654, 37.962 ], [ 14.454, 36.056 ], [ 14.454, 35.655 ], [ 14.454, 35.154 ], [ 14.454, 34.351 ], [ 14.454, 33.648 ], [ 14.454, 32.345 ], [ 14.454, 31.643 ], [ 14.554, 30.139 ], [ 14.554, 29.738 ], [ 14.654, 28.935 ], [ 14.754, 28.033 ], [ 14.954, 27.23 ], [ 14.954, 27.13 ], [ 15.054, 26.629 ], [ 15.254, 25.726 ], [ 15.454, 24.924 ], [ 15.554, 24.422 ], [ 17.554, 19.307 ], [ 17.954, 18.605 ], [ 18.054, 18.404 ], [ 18.655, 17.4 ], [ 18.954, 16.8 ], [ 20.454, 14.393 ], [ 21.055, 13.59 ], [ 21.255, 13.289 ], [ 21.855, 12.487 ], [ 22.155, 12.186 ], [ 22.255, 12.086 ], [ 22.655, 11.584 ], [ 22.954, 11.183 ], [ 23.456, 10.682 ], [ 23.956, 10.18 ], [ 24.956, 9.278 ], [ 25.355, 8.977 ], [ 25.456, 8.877 ], [ 25.855, 8.475 ], [ 26.355, 8.074 ], [ 27.756, 6.971 ], [ 27.855, 6.871 ], [ 29.857, 5.467 ], [ 31.956, 4.363 ], [ 32.157, 4.263 ], [ 33.358, 3.661 ], [ 34.357, 3.26 ], [ 34.758, 3.16 ], [ 34.858, 3.16 ], [ 36.058, 2.658 ], [ 36.258, 2.658 ], [ 38.459, 1.956 ], [ 38.659, 1.956 ], [ 38.959, 1.855 ], [ 41.758, 1.354 ], [ 42.359, 1.254 ], [ 43.56, 1.154 ], [ 44.16, 1.154 ], [ 44.66, 1.154 ], [ 45.66, 1.154 ], [ 46.46, 1.154 ], [ 49.661, 1.254 ], [ 50.76, 1.354 ], [ 51.161, 1.354 ], [ 51.561, 1.455 ], [ 52.26, 1.555 ], [ 52.361, 1.555 ], [ 53.061, 1.655 ], [ 53.562, 1.756 ], [ 57.161, 2.759 ], [ 57.962, 3.059 ], [ 58.863, 3.461 ], [ 59.863, 3.862 ], [ 59.963, 3.962 ], [ 60.562, 4.263 ], [ 62.963, 5.467 ], [ 63.163, 5.566 ], [ 63.864, 5.868 ], [ 64.163, 6.169 ], [ 66.864, 8.074 ], [ 67.163, 8.375 ], [ 67.764, 8.877 ], [ 67.864, 8.977 ], [ 80.167, -12.386 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-.4, .401], [0, 0], [0, 0], [-.1, .1], [-.101, .2], [-.1, .101], [-.1, .101], [-.1, .1], [0, 0], [-.1, .2], [-.4, .602], [0, 0], [0, 0], [0, .1], [-.1, 0], [0, 0], [0, .1], [-.1, .501], [0, .1], [-.1, .1], [0, .1], [0, 0], [0, 0], [-.1, .502], [0, 0], [0, .201], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.1, .401], [0, 0], [0, .301], [0, 0], [.1, .1], [0, 0], [.1, .201], [0, 0], [0, 0], [.1, .3], [.1, .1], [0, 0], [0, 0], [3, 1.805], [5.402, -1.404], [.6, -.2], [0, 0], [.5, -.2], [0, 0], [0, 0], [0, 0], [0, 0], [1.1, -1.103], [0, 0], [1, -1.705], [.3, -3.009], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [1.3, .803], [5.401, -1.504], [2.801, -4.915], [-10.002, -5.817], [-1.401, -.502], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.2, .1], [0, 0], [.1, .101], [0, 0], [.1, .101], [0, 0], [.3, .1], [0, 0], [.3, .201], [.1, .1], [0, 0], [.2, .1], [.201, .2], [0, 0], [0, 0], [.2, .1], [0, 0], [0, 0], [.1, .101], [0, 0], [.2, .101], [0, 0], [.1, .2], [0, 0], [0, .101], [0, 0], [0, 0], [0, 0], [0, 0], [.2, .302], [.4, .803], [0, 0], [.1, .201], [.4, 1.003], [.1, .402], [0, 0], [.1, 1.001], [0, 0], [0, 0], [0, .702], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, .3], [0, .401], [-.1, .301], [0, 0], [0, .2], [-.1, .401], [0, 0], [0, .1], [0, 0], [-.2, .201], [0, 0], [-.301, .302], [-.1, .2], [-.4, .702], [-.2, .301], [0, .101], [0, 0], [0, 0], [-.1, 0], [0, 0], [-.1, .201], [-.201, .1], [-.2, .201], [-.4, .301], [0, 0], [0, .1], [-.1, .101], [0, 0], [-.5, .401], [0, 0], [0, 0], [0, 0], [-.1, 0], [0, 0], [-.4, .201], [-.2, 0], [0, 0], [0, 0], [0, 0], [-.801, .201], [0, 0], [-.1, 0], [-1, .101], [0, 0], [-.401, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-1, -.1], [0, 0], [0, 0], [-.1, -.101], [-.2, 0], [0, 0], [-.2, 0], [0, 0], [-1.2, -.403], [0, 0], [-.3, -.201], [-.3, -.1], [0, 0], [-.2, -.1], [-.9, -.502], [0, 0], [0, 0], [0, 0], [-.8, -.602], [0, 0], [-.2, -.201], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [0, 0], [.4, -.301], [0, 0], [0, 0], [.1, -.101], [.1, -.1], [.2, -.201], [.1, -.1], [.1, -.1], [0, 0], [.1, -.2], [.3, -.401], [0, 0], [0, -.1], [0, -.101], [0, 0], [0, 0], [0, -.1], [.2, -.502], [0, -.101], [0, -.101], [0, -.101], [0, 0], [0, 0], [.1, -.501], [0, 0], [0, -.201], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -.401], [0, 0], [0, -.301], [0, 0], [0, -.1], [0, 0], [-.1, -.101], [0, -.1], [0, 0], [-.1, -.301], [-.1, -.201], [0, 0], [0, 0], [-1.8, -3.009], [-4.801, -2.809], [-.6, .201], [0, 0], [-.6, .201], [0, 0], [0, 0], [0, 0], [0, 0], [-1.3, .803], [0, 0], [-1.401, 1.304], [-1.5, 2.608], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-1.1, -1.003], [-4.801, -2.808], [-5.401, 1.404], [-5.801, 9.929], [1.2, .701], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-.2, -.102], [0, 0], [-.1, -.1], [0, 0], [-.1, -.099], [0, 0], [-.3, -.099], [0, 0], [-.3, -.201], [-.2, -.1], [0, 0], [-.2, -.101], [-.2, -.102], [0, 0], [0, 0], [-.2, -.1], [0, 0], [0, 0], [-.2, -.101], [0, 0], [-.1, -.101], [0, 0], [-.2, -.2], [0, 0], [0, -.1], [0, 0], [0, 0], [0, 0], [0, 0], [-.2, -.301], [-.4, -.701], [0, 0], [-.1, -.201], [-.4, -.802], [-.2, -.501], [0, 0], [-.3, -1.103], [0, 0], [0, 0], [-.1, -.602], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -.301], [0, -.2], [0, -.201], [0, 0], [0, -.201], [0, -.201], [0, 0], [0, -.201], [0, 0], [.1, -.202], [0, 0], [.2, -.3], [.1, -.199], [.5, -.903], [.2, -.301], [.1, -.1], [0, 0], [0, 0], [0, 0], [0, 0], [.1, -.101], [.2, -.201], [.2, -.202], [.3, -.301], [0, 0], [0, 0], [.2, -.102], [0, 0], [.4, -.401], [0, 0], [0, 0], [0, 0], [.1, 0], [0, 0], [.2, -.1], [.1, 0], [0, 0], [0, 0], [0, 0], [.7, -.2], [0, 0], [.1, 0], [.8, -.2], [0, 0], [.4, -.1], [0, 0], [0, 0], [0, 0], [0, 0], [1.1, 0], [0, 0], [0, 0], [.1, 0], [.2, 0], [0, 0], [.2, 0], [0, 0], [1.2, .301], [0, 0], [.3, .101], [.3, .1], [0, 0], [.2, .1], [.7, .3], [.1, 0], [0, 0], [0, 0], [1, .601], [0, 0], [.2, .1], [0, 0], [0, 0], [0, 0]],
+                                v: [[82.767, -16.999], [78.866, -19.105], [42.359, -40.468], [41.659, -40.869], [50.361, -46.185], [51.561, -47.188], [51.76, -47.388], [52.76, -48.391], [53.061, -48.692], [53.361, -49.093], [53.762, -49.595], [54.062, -49.896], [54.361, -50.297], [54.562, -50.598], [54.962, -51.099], [55.962, -52.604], [56.161, -53.005], [56.262, -53.205], [56.361, -53.406], [56.462, -53.506], [57.161, -55.011], [57.262, -55.211], [57.762, -56.615], [57.861, -56.916], [58.062, -57.317], [58.161, -57.618], [58.161, -57.719], [58.161, -57.819], [58.562, -59.424], [58.562, -59.624], [58.663, -60.126], [58.762, -61.129], [58.762, -61.429], [58.762, -61.831], [58.762, -62.533], [58.762, -64.037], [58.663, -65.14], [58.562, -65.943], [58.463, -66.946], [57.962, -69.052], [57.861, -69.252], [57.562, -70.255], [57.361, -70.757], [57.262, -70.957], [57.062, -71.459], [56.661, -72.361], [56.361, -72.863], [56.262, -72.963], [55.962, -73.665], [48.661, -80.886], [32.956, -82.993], [31.057, -82.391], [30.857, -82.291], [29.157, -81.589], [29.057, -81.589], [28.956, -81.488], [28.757, -81.288], [28.056, -80.987], [24.355, -78.279], [24.056, -77.978], [20.454, -73.465], [17.654, -64.839], [16.754, -55.412], [16.554, -55.512], [-21.153, -77.677], [-39.357, -46.486], [-44.858, -51.4], [-48.459, -54.008], [-64.262, -56.114], [-76.965, -46.385], [-69.363, -17.802], [-65.362, -15.996], [-58.361, -13.589], [-78.065, 21.112], [23.055, 84.397], [26.156, 79.082], [35.458, 63.436], [35.258, 63.436], [34.058, 62.835], [33.458, 62.534], [33.157, 62.433], [32.757, 62.232], [32.657, 62.232], [32.257, 62.032], [31.657, 61.73], [30.857, 61.33], [30.757, 61.23], [29.857, 60.728], [29.357, 60.428], [29.257, 60.428], [28.757, 60.127], [28.156, 59.726], [27.656, 59.726], [26.156, 58.221], [25.656, 57.82], [25.355, 57.619], [24.756, 57.018], [24.355, 56.616], [23.055, 55.313], [22.655, 54.911], [22.055, 54.209], [21.655, 53.708], [20.855, 52.705], [20.755, 52.504], [20.555, 52.304], [20.355, 52.003], [20.155, 51.802], [19.855, 51.301], [19.255, 50.397], [17.954, 48.091], [17.654, 47.59], [17.354, 46.988], [16.254, 44.28], [15.754, 42.775], [15.354, 41.572], [14.754, 38.564], [14.754, 38.363], [14.654, 37.962], [14.454, 36.056], [14.454, 35.655], [14.454, 35.154], [14.454, 34.351], [14.454, 33.648], [14.454, 32.345], [14.454, 31.643], [14.554, 30.139], [14.554, 29.738], [14.654, 28.935], [14.754, 28.033], [14.954, 27.23], [14.954, 27.13], [15.054, 26.629], [15.254, 25.726], [15.454, 24.924], [15.554, 24.422], [17.554, 19.307], [17.954, 18.605], [18.054, 18.404], [18.655, 17.4], [18.954, 16.8], [20.454, 14.393], [21.055, 13.59], [21.255, 13.289], [21.855, 12.487], [22.155, 12.186], [22.255, 12.086], [22.655, 11.584], [22.954, 11.183], [23.456, 10.682], [23.956, 10.18], [24.956, 9.278], [25.355, 8.977], [25.456, 8.877], [25.855, 8.475], [26.355, 8.074], [27.756, 6.971], [27.855, 6.871], [29.857, 5.467], [31.956, 4.363], [32.157, 4.263], [33.358, 3.661], [34.357, 3.26], [34.758, 3.16], [34.858, 3.16], [36.058, 2.658], [36.258, 2.658], [38.459, 1.956], [38.659, 1.956], [38.959, 1.855], [41.758, 1.354], [42.359, 1.254], [43.56, 1.154], [44.16, 1.154], [44.66, 1.154], [45.66, 1.154], [46.46, 1.154], [49.661, 1.254], [50.76, 1.354], [51.161, 1.354], [51.561, 1.455], [52.26, 1.555], [52.361, 1.555], [53.061, 1.655], [53.562, 1.756], [57.161, 2.759], [57.962, 3.059], [58.863, 3.461], [59.863, 3.862], [59.963, 3.962], [60.562, 4.263], [62.963, 5.467], [63.163, 5.566], [63.864, 5.868], [64.163, 6.169], [66.864, 8.074], [67.163, 8.375], [67.764, 8.877], [67.864, 8.977], [80.167, -12.386]],
                                 c: true
                             },
                             ix: 2
@@ -8571,7 +8571,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .952999997606, .925, .493999974868, 1 ],
+                            k: [.952999997606, .925, .493999974868, 1],
                             ix: 4
                         },
                         o: {
@@ -8588,17 +8588,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 187.796, 272.202 ],
+                            k: [187.796, 272.202],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8622,7 +8622,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -8630,7 +8630,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -8656,67 +8656,67 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 5,
-                                s: [ 367 ]
+                                s: [367]
                             }, {
                                 t: 20,
-                                s: [ 291 ]
-                            } ],
+                                s: [291]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 5,
-                                s: [ 238 ]
+                                s: [238]
                             }, {
                                 t: 20,
-                                s: [ 246 ]
-                            } ],
+                                s: [246]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ -1.5, -.902 ], [ -2.301, -8.424 ], [ 4.401, -7.622 ], [ 4.501, -2.808 ], [ 0, 0 ], [ 0, 0 ], [ .501, -.201 ], [ 9.402, 5.416 ], [ 0, 0 ], [ .1, .1 ], [ 1, .803 ], [ 0, 0 ], [ .2, .201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.399, -1.805 ], [ .099, -.2 ], [ .3, -.402 ], [ .2, -.4 ], [ .099, 0 ], [ -2.901, -6.118 ], [ 0, 0 ], [ -.099, -.1 ], [ 0, 0 ], [ 0, 0 ], [ -.5, -.603 ], [ 0, 0 ], [ -.5, -.502 ], [ -1.6, -1.003 ], [ 0, 0 ], [ -.1, -.1 ], [ 0, 0 ], [ -.3, -.099 ], [ 0, 0 ], [ -.4, -.2 ], [ -.5, -.101 ], [ -4, 1.103 ], [ 0, 0 ], [ -.1, 0 ], [ 0, 0 ], [ -.9, .502 ], [ -.2, .102 ], [ 0, 0 ], [ -.3, .201 ], [ -.2, .099 ], [ 0, 0 ], [ -.2, .1 ], [ -.1, .099 ], [ -.2, .1 ], [ 0, 0 ], [ -.3, .202 ], [ -1, 1.605 ], [ -.3, 3.009 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -6.901, 11.835 ], [ 11.302, 7.622 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 7.601, 4.413 ], [ 2.2, 8.425 ], [ -2.6, 4.614 ], [ 0, 0 ], [ 0, 0 ], [ -.5, .301 ], [ -9.702, 4.613 ], [ 0, 0 ], [ -.1, -.1 ], [ -1.1, -.702 ], [ 0, 0 ], [ -.201, -.201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.3, .902 ], [ -.201, .301 ], [ -.301, .402 ], [ -.099, .201 ], [ 0, 0 ], [ -3.302, 5.918 ], [ 0, 0 ], [ .101, .1 ], [ 0, 0 ], [ 0, 0 ], [ .299, .502 ], [ 0, 0 ], [ .4, .501 ], [ 1.199, 1.304 ], [ 0, 0 ], [ .1, .102 ], [ 0, 0 ], [ .2, .101 ], [ 0, 0 ], [ .401, .2 ], [ .4, .201 ], [ 3.701, 1.304 ], [ 0, 0 ], [ .1, 0 ], [ 0, 0 ], [ .9, -.299 ], [ .2, -.1 ], [ 0, 0 ], [ .4, -.202 ], [ .1, -.1 ], [ 0, 0 ], [ .3, -.2 ], [ .2, -.1 ], [ .2, -.101 ], [ 0, 0 ], [ .3, -.301 ], [ 1.3, -1.303 ], [ 1.5, -2.608 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 12.203, 6.118 ], [ 6.901, -11.834 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 1.6, .703 ] ],
-                                v: [ [ -34.156, -57.068 ], [ -18.954, -37.21 ], [ -22.255, -12.336 ], [ -33.156, -1.003 ], [ -33.357, -.802 ], [ -34.557, -.201 ], [ -36.057, .501 ], [ -66.464, -.702 ], [ -66.863, -1.003 ], [ -67.164, -1.203 ], [ -70.264, -3.41 ], [ -70.664, -3.71 ], [ -71.264, -4.212 ], [ -85.967, 21.061 ], [ -45.859, 44.432 ], [ -53.461, 49.846 ], [ -57.76, 54.159 ], [ -58.26, 54.861 ], [ -59.161, 56.065 ], [ -59.661, 56.867 ], [ -59.76, 56.967 ], [ -60.462, 76.122 ], [ -60.362, 76.323 ], [ -60.161, 76.724 ], [ -60.062, 76.824 ], [ -59.76, 77.427 ], [ -58.562, 79.133 ], [ -58.462, 79.232 ], [ -57.26, 80.737 ], [ -53.161, 84.146 ], [ -53.061, 84.246 ], [ -52.661, 84.547 ], [ -52.361, 84.748 ], [ -51.661, 85.149 ], [ -51.061, 85.451 ], [ -49.96, 85.951 ], [ -48.56, 86.453 ], [ -36.758, 86.755 ], [ -36.258, 86.555 ], [ -35.858, 86.453 ], [ -35.656, 86.352 ], [ -32.957, 85.25 ], [ -32.357, 84.948 ], [ -32.156, 84.849 ], [ -30.957, 84.146 ], [ -30.456, 83.846 ], [ -30.156, 83.645 ], [ -29.456, 83.143 ], [ -29.056, 82.844 ], [ -28.556, 82.441 ], [ -28.355, 82.24 ], [ -27.456, 81.438 ], [ -23.954, 77.026 ], [ -21.155, 68.401 ], [ -20.254, 58.974 ], [ 22.555, 84.146 ], [ 37.857, 57.77 ], [ 42.858, 60.276 ], [ 76.766, 50.146 ], [ 68.865, 15.546 ], [ 64.163, 12.436 ], [ 85.967, -25.073 ], [ -22.255, -87.857 ], [ -38.858, -59.374 ] ],
+                                i: [[-1.5, -.902], [-2.301, -8.424], [4.401, -7.622], [4.501, -2.808], [0, 0], [0, 0], [.501, -.201], [9.402, 5.416], [0, 0], [.1, .1], [1, .803], [0, 0], [.2, .201], [0, 0], [0, 0], [0, 0], [1.399, -1.805], [.099, -.2], [.3, -.402], [.2, -.4], [.099, 0], [-2.901, -6.118], [0, 0], [-.099, -.1], [0, 0], [0, 0], [-.5, -.603], [0, 0], [-.5, -.502], [-1.6, -1.003], [0, 0], [-.1, -.1], [0, 0], [-.3, -.099], [0, 0], [-.4, -.2], [-.5, -.101], [-4, 1.103], [0, 0], [-.1, 0], [0, 0], [-.9, .502], [-.2, .102], [0, 0], [-.3, .201], [-.2, .099], [0, 0], [-.2, .1], [-.1, .099], [-.2, .1], [0, 0], [-.3, .202], [-1, 1.605], [-.3, 3.009], [0, 0], [0, 0], [0, 0], [0, 0], [-6.901, 11.835], [11.302, 7.622], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[7.601, 4.413], [2.2, 8.425], [-2.6, 4.614], [0, 0], [0, 0], [-.5, .301], [-9.702, 4.613], [0, 0], [-.1, -.1], [-1.1, -.702], [0, 0], [-.201, -.201], [0, 0], [0, 0], [0, 0], [-1.3, .902], [-.201, .301], [-.301, .402], [-.099, .201], [0, 0], [-3.302, 5.918], [0, 0], [.101, .1], [0, 0], [0, 0], [.299, .502], [0, 0], [.4, .501], [1.199, 1.304], [0, 0], [.1, .102], [0, 0], [.2, .101], [0, 0], [.401, .2], [.4, .201], [3.701, 1.304], [0, 0], [.1, 0], [0, 0], [.9, -.299], [.2, -.1], [0, 0], [.4, -.202], [.1, -.1], [0, 0], [.3, -.2], [.2, -.1], [.2, -.101], [0, 0], [.3, -.301], [1.3, -1.303], [1.5, -2.608], [0, 0], [0, 0], [0, 0], [0, 0], [12.203, 6.118], [6.901, -11.834], [0, 0], [0, 0], [0, 0], [0, 0], [1.6, .703]],
+                                v: [[-34.156, -57.068], [-18.954, -37.21], [-22.255, -12.336], [-33.156, -1.003], [-33.357, -.802], [-34.557, -.201], [-36.057, .501], [-66.464, -.702], [-66.863, -1.003], [-67.164, -1.203], [-70.264, -3.41], [-70.664, -3.71], [-71.264, -4.212], [-85.967, 21.061], [-45.859, 44.432], [-53.461, 49.846], [-57.76, 54.159], [-58.26, 54.861], [-59.161, 56.065], [-59.661, 56.867], [-59.76, 56.967], [-60.462, 76.122], [-60.362, 76.323], [-60.161, 76.724], [-60.062, 76.824], [-59.76, 77.427], [-58.562, 79.133], [-58.462, 79.232], [-57.26, 80.737], [-53.161, 84.146], [-53.061, 84.246], [-52.661, 84.547], [-52.361, 84.748], [-51.661, 85.149], [-51.061, 85.451], [-49.96, 85.951], [-48.56, 86.453], [-36.758, 86.755], [-36.258, 86.555], [-35.858, 86.453], [-35.656, 86.352], [-32.957, 85.25], [-32.357, 84.948], [-32.156, 84.849], [-30.957, 84.146], [-30.456, 83.846], [-30.156, 83.645], [-29.456, 83.143], [-29.056, 82.844], [-28.556, 82.441], [-28.355, 82.24], [-27.456, 81.438], [-23.954, 77.026], [-21.155, 68.401], [-20.254, 58.974], [22.555, 84.146], [37.857, 57.77], [42.858, 60.276], [76.766, 50.146], [68.865, 15.546], [64.163, 12.436], [85.967, -25.073], [-22.255, -87.857], [-38.858, -59.374]],
                                 c: true
                             },
                             ix: 2
@@ -8728,7 +8728,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .380000005984, .788000009574, .760999971278, 1 ],
+                            k: [.380000005984, .788000009574, .760999971278, 1],
                             ix: 4
                         },
                         o: {
@@ -8745,17 +8745,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 372.033, 230.43 ],
+                            k: [372.033, 230.43],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8779,7 +8779,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -8787,7 +8787,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -8813,67 +8813,67 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 335 ]
+                                s: [335]
                             }, {
                                 t: 15,
-                                s: [ 289 ]
-                            } ],
+                                s: [289]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 318 ]
+                                s: [318]
                             }, {
                                 t: 15,
-                                s: [ 258 ]
-                            } ],
+                                s: [258]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, .1 ], [ .4, .401 ], [ 0, 0 ], [ .2, .099 ], [ 0, 0 ], [ 0, .1 ], [ 0, .1 ], [ 0, 0 ], [ .1, .1 ], [ .8, .401 ], [ 0, 0 ], [ .5, .301 ], [ .2, .1 ], [ .2, .1 ], [ .201, 0 ], [ 0, 0 ], [ .9, .1 ], [ 0, 0 ], [ .1, .101 ], [ .1, .1 ], [ .1, .101 ], [ 0, 0 ], [ 0, 0 ], [ .8, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .4, -.1 ], [ 0, 0 ], [ .1, 0 ], [ .3, -.102 ], [ .2, -.101 ], [ .1, -.1 ], [ 0, 0 ], [ .1, -.1 ], [ 0, 0 ], [ .2, -.1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.099 ], [ 0, 0 ], [ .2, -.1 ], [ .1, -.1 ], [ .2, -.201 ], [ 0, 0 ], [ .1, -.1 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.1 ], [ .1, -.2 ], [ .1, -.1 ], [ 0, 0 ], [ .3, -.501 ], [ 0, 0 ], [ .1, -.199 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.301 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.402 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.702 ], [ 0, 0 ], [ -.1, -.201 ], [ 0, 0 ], [ -.2, -.501 ], [ 0, 0 ], [ 0, -.102 ], [ 0, -.201 ], [ -.2, -.501 ], [ 0, 0 ], [ 0, -.099 ], [ 0, 0 ], [ 0, 0 ], [ -.1, -.101 ], [ 0, 0 ], [ -.1, 0 ], [ -.1, -.1 ], [ 0, 0 ], [ -.1, -.201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.2, -.1 ], [ 0, 0 ], [ -.1, 0 ], [ -.2, -.101 ], [ 0, 0 ], [ -.2, -.101 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.1, -.1 ], [ -.3, -.102 ], [ 0, 0 ], [ -.1, 0 ], [ 0, 0 ], [ -1.001, -.201 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -7.101, 12.136 ], [ -13.403, -2.607 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 9.702, -2.607 ], [ 8.702, 5.016 ], [ 0, 0 ], [ 3.101, 4.915 ], [ 0, 0 ], [ 0, 0 ], [ .4, .803 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -3.7, 9.226 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.1, -.1 ], [ -.2, -.301 ], [ 0, 0 ], [ -.1, -.1 ], [ 0, 0 ], [ -.1, -.102 ], [ -.1, -.1 ], [ 0, 0 ], [ -.1, -.101 ], [ -.601, -.401 ], [ 0, 0 ], [ -.4, -.202 ], [ -.2, -.101 ], [ -.2, -.1 ], [ -.2, -.101 ], [ 0, 0 ], [ -.8, -.301 ], [ 0, 0 ], [ -.1, 0 ], [ -.1, 0 ], [ -.1, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.6, -.099 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.6, .1 ], [ 0, 0 ], [ -.1, 0 ], [ -.5, .1 ], [ -.3, .099 ], [ -.1, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.2, .101 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .101 ], [ 0, 0 ], [ -.1, .1 ], [ -.1, .1 ], [ -.2, .201 ], [ 0, 0 ], [ -.1, .1 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .101 ], [ -.1, .1 ], [ -.1, .1 ], [ 0, 0 ], [ -.3, .501 ], [ 0, 0 ], [ -.1, .2 ], [ 0, .1 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .2 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, .301 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, .201 ], [ 0, 0 ], [ 0, 0 ], [ .1, .602 ], [ 0, 0 ], [ .1, .201 ], [ 0, 0 ], [ .2, .702 ], [ 0, 0 ], [ 0, .1 ], [ .1, .199 ], [ .301, .501 ], [ 0, 0 ], [ 0, .101 ], [ 0, 0 ], [ 0, 0 ], [ .1, .1 ], [ 0, 0 ], [ .1, .1 ], [ .2, .201 ], [ 0, 0 ], [ .1, .099 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, .1 ], [ 0, 0 ], [ .1, .101 ], [ .2, .1 ], [ 0, 0 ], [ .2, .1 ], [ .1, 0 ], [ 0, 0 ], [ 0, 0 ], [ .2, .101 ], [ .3, .1 ], [ 0, 0 ], [ .1, 0 ], [ 0, 0 ], [ .9, .3 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -8.802, -10.532 ], [ 7.101, -12.135 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -5.001, 8.726 ], [ -9.702, 2.608 ], [ 0, 0 ], [ -5.101, -3.009 ], [ 0, 0 ], [ 0, 0 ], [ -.5, -.802 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -4.001, -9.328 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -37.808, -48.592 ], [ -40.808, -43.377 ], [ -44.409, -48.592 ], [ -47.21, -52.403 ], [ -47.41, -52.704 ], [ -48.41, -53.707 ], [ -48.81, -54.108 ], [ -49.21, -54.408 ], [ -49.71, -54.909 ], [ -49.91, -55.111 ], [ -50.11, -55.311 ], [ -50.51, -55.612 ], [ -50.91, -55.913 ], [ -52.911, -57.217 ], [ -53.511, -57.617 ], [ -54.811, -58.32 ], [ -55.411, -58.621 ], [ -55.911, -58.821 ], [ -56.512, -59.022 ], [ -56.912, -59.123 ], [ -59.312, -59.724 ], [ -59.712, -59.824 ], [ -60.112, -59.925 ], [ -60.512, -60.025 ], [ -60.912, -60.126 ], [ -61.212, -60.126 ], [ -61.713, -60.226 ], [ -63.713, -60.325 ], [ -65.013, -60.325 ], [ -65.213, -60.325 ], [ -65.413, -60.325 ], [ -65.913, -60.325 ], [ -66.714, -60.226 ], [ -68.214, -59.925 ], [ -68.414, -59.824 ], [ -68.714, -59.724 ], [ -70.014, -59.322 ], [ -70.814, -59.022 ], [ -71.014, -58.922 ], [ -71.615, -58.721 ], [ -71.815, -58.621 ], [ -72.315, -58.421 ], [ -72.915, -58.12 ], [ -73.015, -58.019 ], [ -74.115, -57.016 ], [ -74.715, -57.016 ], [ -74.915, -56.916 ], [ -75.915, -56.214 ], [ -76.115, -56.014 ], [ -76.716, -55.512 ], [ -77.116, -55.211 ], [ -77.316, -55.011 ], [ -77.916, -54.408 ], [ -78.116, -54.208 ], [ -78.316, -54.008 ], [ -78.816, -53.405 ], [ -78.816, -53.306 ], [ -78.916, -53.105 ], [ -79.216, -52.704 ], [ -79.416, -52.403 ], [ -79.816, -51.801 ], [ -80.816, -50.297 ], [ -81.617, -48.792 ], [ -81.917, -48.291 ], [ -82.017, -48.09 ], [ -82.017, -47.989 ], [ -82.017, -47.89 ], [ -82.117, -47.589 ], [ -82.217, -47.388 ], [ -82.417, -46.786 ], [ -82.417, -46.686 ], [ -82.617, -46.084 ], [ -82.817, -45.182 ], [ -83.017, -44.279 ], [ -83.117, -43.477 ], [ -83.317, -42.273 ], [ -83.317, -41.972 ], [ -83.417, -41.07 ], [ -83.417, -40.669 ], [ -83.417, -39.465 ], [ -83.417, -38.763 ], [ -83.417, -38.362 ], [ -83.417, -38.161 ], [ -83.417, -37.76 ], [ -83.317, -36.857 ], [ -83.317, -36.757 ], [ -83.317, -36.456 ], [ -82.917, -34.651 ], [ -82.617, -33.548 ], [ -82.417, -32.946 ], [ -82.417, -32.846 ], [ -81.717, -31.141 ], [ -81.617, -31.04 ], [ -81.517, -30.738 ], [ -81.317, -30.238 ], [ -80.516, -28.734 ], [ -80.416, -28.633 ], [ -80.316, -28.433 ], [ -80.016, -28.132 ], [ -79.616, -27.329 ], [ -79.316, -26.928 ], [ -79.116, -26.627 ], [ -78.916, -26.427 ], [ -78.516, -26.026 ], [ -78.316, -25.824 ], [ -78.016, -25.424 ], [ -77.716, -25.123 ], [ -77.516, -25.123 ], [ -76.015, -23.618 ], [ -75.915, -23.518 ], [ -75.215, -23.017 ], [ -74.715, -22.716 ], [ -74.615, -22.716 ], [ -74.215, -22.515 ], [ -73.615, -22.214 ], [ -72.915, -21.813 ], [ -72.415, -21.512 ], [ -72.215, -21.412 ], [ -72.115, -21.412 ], [ -71.114, -20.911 ], [ -70.614, -20.71 ], [ -69.814, -20.408 ], [ -69.514, -20.309 ], [ -69.214, -20.209 ], [ -68.314, -19.907 ], [ -65.513, -19.306 ], [ -65.213, -19.306 ], [ -55.011, -19.306 ], [ -60.412, -10.179 ], [ -73.915, 12.387 ], [ -77.216, 17.903 ], [ -26.105, 49.897 ], [ 25.405, 79.984 ], [ 38.708, 57.219 ], [ 35.507, 19.407 ], [ 69.914, 3.661 ], [ 83.417, -19.607 ], [ 65.913, -29.837 ], [ 65.913, -29.737 ], [ 65.813, -29.536 ], [ 42.908, -11.985 ], [ 14.303, -15.796 ], [ 14.203, -15.896 ], [ 1.6, -28.031 ], [ 1.5, -28.132 ], [ .7, -29.436 ], [ -.6, -31.843 ], [ -.6, -31.943 ], [ -1.1, -32.946 ], [ -1.1, -33.046 ], [ -1.601, -62.03 ], [ -2.101, -62.332 ], [ .1, -65.943 ], [ .1, -66.745 ], [ 1.1, -67.748 ], [ -19.804, -79.984 ] ],
+                                i: [[0, 0], [0, 0], [0, 0], [0, 0], [0, .1], [.4, .401], [0, 0], [.2, .099], [0, 0], [0, .1], [0, .1], [0, 0], [.1, .1], [.8, .401], [0, 0], [.5, .301], [.2, .1], [.2, .1], [.201, 0], [0, 0], [.9, .1], [0, 0], [.1, .101], [.1, .1], [.1, .101], [0, 0], [0, 0], [.8, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.4, -.1], [0, 0], [.1, 0], [.3, -.102], [.2, -.101], [.1, -.1], [0, 0], [.1, -.1], [0, 0], [.2, -.1], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.1, -.099], [0, 0], [.2, -.1], [.1, -.1], [.2, -.201], [0, 0], [.1, -.1], [0, 0], [0, 0], [0, -.1], [.1, -.2], [.1, -.1], [0, 0], [.3, -.501], [0, 0], [.1, -.199], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -.201], [0, 0], [0, 0], [0, 0], [0, 0], [0, -.301], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -.402], [0, 0], [0, 0], [-.2, -.702], [0, 0], [-.1, -.201], [0, 0], [-.2, -.501], [0, 0], [0, -.102], [0, -.201], [-.2, -.501], [0, 0], [0, -.099], [0, 0], [0, 0], [-.1, -.101], [0, 0], [-.1, 0], [-.1, -.1], [0, 0], [-.1, -.201], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-.2, -.1], [0, 0], [-.1, 0], [-.2, -.101], [0, 0], [-.2, -.101], [0, 0], [0, 0], [0, 0], [-.1, -.1], [-.3, -.102], [0, 0], [-.1, 0], [0, 0], [-1.001, -.201], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-7.101, 12.136], [-13.403, -2.607], [0, 0], [0, 0], [0, 0], [0, 0], [9.702, -2.607], [8.702, 5.016], [0, 0], [3.101, 4.915], [0, 0], [0, 0], [.4, .803], [0, 0], [0, 0], [0, 0], [-3.7, 9.226], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                o: [[0, 0], [0, 0], [0, 0], [-.1, -.1], [-.2, -.301], [0, 0], [-.1, -.1], [0, 0], [-.1, -.102], [-.1, -.1], [0, 0], [-.1, -.101], [-.601, -.401], [0, 0], [-.4, -.202], [-.2, -.101], [-.2, -.1], [-.2, -.101], [0, 0], [-.8, -.301], [0, 0], [-.1, 0], [-.1, 0], [-.1, 0], [0, 0], [0, 0], [-.6, -.099], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-.6, .1], [0, 0], [-.1, 0], [-.5, .1], [-.3, .099], [-.1, 0], [0, 0], [0, 0], [0, 0], [-.2, .101], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-.1, .101], [0, 0], [-.1, .1], [-.1, .1], [-.2, .201], [0, 0], [-.1, .1], [0, 0], [0, 0], [-.1, .101], [-.1, .1], [-.1, .1], [0, 0], [-.3, .501], [0, 0], [-.1, .2], [0, .1], [0, 0], [0, 0], [0, 0], [0, 0], [-.1, .2], [0, 0], [0, 0], [0, 0], [0, 0], [0, .301], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, .201], [0, 0], [0, 0], [.1, .602], [0, 0], [.1, .201], [0, 0], [.2, .702], [0, 0], [0, .1], [.1, .199], [.301, .501], [0, 0], [0, .101], [0, 0], [0, 0], [.1, .1], [0, 0], [.1, .1], [.2, .201], [0, 0], [.1, .099], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.1, .1], [0, 0], [.1, .101], [.2, .1], [0, 0], [.2, .1], [.1, 0], [0, 0], [0, 0], [.2, .101], [.3, .1], [0, 0], [.1, 0], [0, 0], [.9, .3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-8.802, -10.532], [7.101, -12.135], [0, 0], [0, 0], [0, 0], [0, 0], [-5.001, 8.726], [-9.702, 2.608], [0, 0], [-5.101, -3.009], [0, 0], [0, 0], [-.5, -.802], [0, 0], [0, 0], [0, 0], [-4.001, -9.328], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+                                v: [[-37.808, -48.592], [-40.808, -43.377], [-44.409, -48.592], [-47.21, -52.403], [-47.41, -52.704], [-48.41, -53.707], [-48.81, -54.108], [-49.21, -54.408], [-49.71, -54.909], [-49.91, -55.111], [-50.11, -55.311], [-50.51, -55.612], [-50.91, -55.913], [-52.911, -57.217], [-53.511, -57.617], [-54.811, -58.32], [-55.411, -58.621], [-55.911, -58.821], [-56.512, -59.022], [-56.912, -59.123], [-59.312, -59.724], [-59.712, -59.824], [-60.112, -59.925], [-60.512, -60.025], [-60.912, -60.126], [-61.212, -60.126], [-61.713, -60.226], [-63.713, -60.325], [-65.013, -60.325], [-65.213, -60.325], [-65.413, -60.325], [-65.913, -60.325], [-66.714, -60.226], [-68.214, -59.925], [-68.414, -59.824], [-68.714, -59.724], [-70.014, -59.322], [-70.814, -59.022], [-71.014, -58.922], [-71.615, -58.721], [-71.815, -58.621], [-72.315, -58.421], [-72.915, -58.12], [-73.015, -58.019], [-74.115, -57.016], [-74.715, -57.016], [-74.915, -56.916], [-75.915, -56.214], [-76.115, -56.014], [-76.716, -55.512], [-77.116, -55.211], [-77.316, -55.011], [-77.916, -54.408], [-78.116, -54.208], [-78.316, -54.008], [-78.816, -53.405], [-78.816, -53.306], [-78.916, -53.105], [-79.216, -52.704], [-79.416, -52.403], [-79.816, -51.801], [-80.816, -50.297], [-81.617, -48.792], [-81.917, -48.291], [-82.017, -48.09], [-82.017, -47.989], [-82.017, -47.89], [-82.117, -47.589], [-82.217, -47.388], [-82.417, -46.786], [-82.417, -46.686], [-82.617, -46.084], [-82.817, -45.182], [-83.017, -44.279], [-83.117, -43.477], [-83.317, -42.273], [-83.317, -41.972], [-83.417, -41.07], [-83.417, -40.669], [-83.417, -39.465], [-83.417, -38.763], [-83.417, -38.362], [-83.417, -38.161], [-83.417, -37.76], [-83.317, -36.857], [-83.317, -36.757], [-83.317, -36.456], [-82.917, -34.651], [-82.617, -33.548], [-82.417, -32.946], [-82.417, -32.846], [-81.717, -31.141], [-81.617, -31.04], [-81.517, -30.738], [-81.317, -30.238], [-80.516, -28.734], [-80.416, -28.633], [-80.316, -28.433], [-80.016, -28.132], [-79.616, -27.329], [-79.316, -26.928], [-79.116, -26.627], [-78.916, -26.427], [-78.516, -26.026], [-78.316, -25.824], [-78.016, -25.424], [-77.716, -25.123], [-77.516, -25.123], [-76.015, -23.618], [-75.915, -23.518], [-75.215, -23.017], [-74.715, -22.716], [-74.615, -22.716], [-74.215, -22.515], [-73.615, -22.214], [-72.915, -21.813], [-72.415, -21.512], [-72.215, -21.412], [-72.115, -21.412], [-71.114, -20.911], [-70.614, -20.71], [-69.814, -20.408], [-69.514, -20.309], [-69.214, -20.209], [-68.314, -19.907], [-65.513, -19.306], [-65.213, -19.306], [-55.011, -19.306], [-60.412, -10.179], [-73.915, 12.387], [-77.216, 17.903], [-26.105, 49.897], [25.405, 79.984], [38.708, 57.219], [35.507, 19.407], [69.914, 3.661], [83.417, -19.607], [65.913, -29.837], [65.913, -29.737], [65.813, -29.536], [42.908, -11.985], [14.303, -15.796], [14.203, -15.896], [1.6, -28.031], [1.5, -28.132], [.7, -29.436], [-.6, -31.843], [-.6, -31.943], [-1.1, -32.946], [-1.1, -33.046], [-1.601, -62.03], [-2.101, -62.332], [.1, -65.943], [.1, -66.745], [1.1, -67.748], [-19.804, -79.984]],
                                 c: true
                             },
                             ix: 2
@@ -8885,7 +8885,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .961000031116, .952999997606, .952999997606, 1 ],
+                            k: [.961000031116, .952999997606, .952999997606, 1],
                             ix: 4
                         },
                         o: {
@@ -8902,17 +8902,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 298.268, 345.015 ],
+                            k: [298.268, 345.015],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -8936,7 +8936,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -8944,7 +8944,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -8970,67 +8970,67 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 3,
-                                s: [ 257 ]
+                                s: [257]
                             }, {
                                 t: 18,
-                                s: [ 289 ]
-                            } ],
+                                s: [289]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .518 ],
-                                    y: [ 1 ]
+                                    x: [.518],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .493 ],
-                                    y: [ 0 ]
+                                    x: [.493],
+                                    y: [0]
                                 },
                                 t: 3,
-                                s: [ 180 ]
+                                s: [180]
                             }, {
                                 t: 18,
-                                s: [ 246 ]
-                            } ],
+                                s: [246]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 283, 250, 0 ],
+                        k: [283, 250, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
                 ao: 0,
-                shapes: [ {
+                shapes: [{
                     ty: "gr",
-                    it: [ {
+                    it: [{
                         ind: 0,
                         ty: "sh",
                         ix: 1,
                         ks: {
                             a: 0,
                             k: {
-                                i: [ [ 0, 0 ], [ 0, 0 ], [ .2, -.301 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.7, -1.304 ], [ 0, 0 ], [ -.4, -.301 ], [ 0, 0 ], [ -4.601, 2.206 ], [ 0, 0 ], [ -.2, .1 ], [ 0, 0 ], [ -1.3, 2.306 ], [ 0, 0 ], [ 1, 3.911 ], [ 3.601, 2.106 ], [ 2.101, .2 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ -1.8, 3.109 ], [ 1.4, 5.416 ], [ 4.901, 2.808 ], [ 5.402, -1.405 ], [ 2.8, -4.914 ], [ .1, -3.511 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 6.902, -11.835 ], [ 13.102, 1.905 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .201 ], [ -.2, .501 ], [ -.3, .501 ], [ -.3, .401 ], [ -.801, 1.103 ], [ -.1, .201 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .201 ], [ 0, 0 ], [ -.2, .1 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .1 ], [ 0, 0 ], [ -.2, .201 ], [ -.3, .2 ], [ 0, 0 ], [ -.2, .1 ], [ -.5, .301 ], [ -.2, .1 ], [ 0, 0 ], [ 0, 0 ], [ -.1, 0 ], [ 0, 0 ], [ -.2, 0 ], [ -.3, .2 ], [ -.2, 0 ], [ -.5, .201 ], [ -.1, 0 ], [ -.1, 0 ], [ -.2, .1 ], [ -.2, .1 ], [ -.3, .1 ], [ -7.501, -4.313 ], [ -2.8, -4.513 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.1 ], [ 0, -.2 ], [ -.1, -.301 ], [ 0, 0 ], [ 0, -.1 ], [ -.1, -.301 ], [ 0, 0 ], [ 0, 0 ], [ .2, -4.313 ], [ 0, 0 ], [ 0, 0 ], [ 0, -.301 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.1 ], [ 0, 0 ], [ .1, -.401 ], [ .1, -.2 ], [ 0, 0 ], [ 0, -.1 ], [ .1, -.301 ], [ 0, -.201 ], [ 0, -.1 ], [ .8, -1.604 ], [ .1, -.1 ], [ .1, -.1 ], [ .1, -.3 ], [ .1, 0 ], [ 0, 0 ], [ .1, -.101 ], [ .2, -.401 ], [ .1, -.201 ], [ 0, 0 ] ],
-                                o: [ [ 0, 0 ], [ -.2, .3 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ .6, .802 ], [ 0, 0 ], [ .4, .301 ], [ 0, 0 ], [ 4.401, 2.507 ], [ 0, 0 ], [ .101, -.101 ], [ 0, 0 ], [ 2.299, -1.404 ], [ 0, 0 ], [ 2, -3.611 ], [ -1.1, -4.012 ], [ -2.001, -1.204 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 3, -1.806 ], [ 2.801, -4.814 ], [ -1.401, -5.416 ], [ -4.801, -2.808 ], [ -5.401, 1.404 ], [ -1.8, 3.009 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 8.201, 10.531 ], [ -6.901, 11.834 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.201 ], [ .1, -.301 ], [ .2, -.502 ], [ .3, -.602 ], [ .6, -1.003 ], [ .1, -.201 ], [ 0, 0 ], [ 0, 0 ], [ .1, -.201 ], [ 0, 0 ], [ .1, -.101 ], [ 0, 0 ], [ 0, 0 ], [ .2, -.2 ], [ 0, 0 ], [ .2, -.201 ], [ .2, -.2 ], [ 0, 0 ], [ .2, -.1 ], [ .5, -.301 ], [ .1, -.1 ], [ 0, 0 ], [ .1, 0 ], [ .1, 0 ], [ 0, 0 ], [ .2, -.101 ], [ .2, -.1 ], [ .1, -.101 ], [ .5, -.2 ], [ .2, -.1 ], [ .2, -.1 ], [ .2, -.1 ], [ .2, -.101 ], [ .3, -.1 ], [ 8.402, -2.206 ], [ 4.601, 2.708 ], [ 0, 0 ], [ 0, 0 ], [ 0, .1 ], [ .1, .1 ], [ .1, .301 ], [ 0, 0 ], [ 0, .1 ], [ .1, .301 ], [ 0, 0 ], [ 0, 0 ], [ 1.5, 4.112 ], [ 0, 0 ], [ 0, 0 ], [ 0, .301 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, .1 ], [ 0, 0 ], [ -.1, .301 ], [ -.1, .401 ], [ 0, 0 ], [ 0, .1 ], [ 0, .1 ], [ 0, .1 ], [ 0, .1 ], [ -.5, 1.705 ], [ -.1, .101 ], [ 0, .1 ], [ -.1, .301 ], [ 0, 0 ], [ 0, 0 ], [ -.1, .1 ], [ -.2, .301 ], [ -.1, .1 ], [ 0, 0 ], [ 0, 0 ] ],
-                                v: [ [ -3.05, 69.003 ], [ -4.35, 70.708 ], [ -5.05, 71.61 ], [ 16.553, 84.247 ], [ 44.159, 36.808 ], [ 46.759, 40.619 ], [ 49.56, 44.531 ], [ 54.061, 50.95 ], [ 57.661, 54.46 ], [ 57.861, 54.56 ], [ 59.163, 55.463 ], [ 59.663, 55.764 ], [ 74.065, 56.165 ], [ 74.264, 56.065 ], [ 74.665, 55.864 ], [ 74.965, 55.764 ], [ 80.366, 50.248 ], [ 80.566, 49.947 ], [ 82.066, 38.313 ], [ 74.764, 28.785 ], [ 68.363, 26.679 ], [ 51.06, 25.174 ], [ 76.465, -18.454 ], [ 40.659, -39.415 ], [ 49.361, -44.63 ], [ 56.661, -52.052 ], [ 58.862, -67.898 ], [ 49.16, -80.636 ], [ 33.357, -82.842 ], [ 20.654, -73.114 ], [ 17.853, -63.084 ], [ 17.353, -52.955 ], [ -23.354, -76.825 ], [ -34.956, -56.866 ], [ -32.557, -20.058 ], [ -65.662, -4.011 ], [ -83.066, 25.977 ], [ -60.261, 39.316 ], [ -60.061, 38.814 ], [ -59.561, 37.611 ], [ -58.861, 36.207 ], [ -57.962, 34.602 ], [ -55.96, 31.493 ], [ -55.66, 30.991 ], [ -55.46, 30.69 ], [ -55.26, 30.49 ], [ -54.861, 29.988 ], [ -54.66, 29.788 ], [ -54.26, 29.387 ], [ -54.26, 29.487 ], [ -53.861, 28.985 ], [ -53.46, 28.584 ], [ -49.66, 25.074 ], [ -48.96, 24.472 ], [ -48.259, 23.971 ], [ -48.16, 23.87 ], [ -47.66, 23.57 ], [ -46.259, 22.667 ], [ -45.758, 22.366 ], [ -45.658, 22.366 ], [ -45.458, 22.266 ], [ -45.258, 22.165 ], [ -44.658, 21.865 ], [ -44.158, 21.664 ], [ -43.358, 21.263 ], [ -42.858, 21.062 ], [ -41.358, 20.46 ], [ -40.857, 20.26 ], [ -40.257, 20.059 ], [ -39.757, 19.859 ], [ -39.158, 19.658 ], [ -38.257, 19.357 ], [ -13.553, 22.667 ], [ -2.35, 33.599 ], [ -2.15, 33.799 ], [ -1.55, 35.003 ], [ -1.451, 35.304 ], [ -1.251, 35.805 ], [ -.85, 36.608 ], [ -.35, 37.711 ], [ -.249, 38.012 ], [ .051, 38.814 ], [ .25, 39.215 ], [ .35, 39.617 ], [ 2.25, 52.254 ], [ 2.25, 52.655 ], [ 2.25, 53.156 ], [ 2.15, 54.159 ], [ 2.15, 54.56 ], [ 2.15, 54.661 ], [ 2.051, 55.563 ], [ 2.051, 55.764 ], [ 1.951, 56.165 ], [ 1.85, 56.767 ], [ 1.65, 57.77 ], [ 1.451, 58.672 ], [ 1.451, 58.873 ], [ 1.35, 59.274 ], [ 1.15, 59.876 ], [ 1.051, 60.277 ], [ .951, 60.578 ], [ -1.049, 65.492 ], [ -1.251, 65.793 ], [ -1.451, 66.094 ], [ -1.85, 66.896 ], [ -1.951, 66.997 ], [ -2.251, 67.398 ], [ -2.451, 67.699 ], [ -3.05, 68.702 ], [ -3.251, 69.103 ], [ -3.251, 69.003 ] ],
+                                i: [[0, 0], [0, 0], [.2, -.301], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [-1.7, -1.304], [0, 0], [-.4, -.301], [0, 0], [-4.601, 2.206], [0, 0], [-.2, .1], [0, 0], [-1.3, 2.306], [0, 0], [1, 3.911], [3.601, 2.106], [2.101, .2], [0, 0], [0, 0], [0, 0], [0, 0], [-1.8, 3.109], [1.4, 5.416], [4.901, 2.808], [5.402, -1.405], [2.8, -4.914], [.1, -3.511], [0, 0], [0, 0], [0, 0], [6.902, -11.835], [13.102, 1.905], [0, 0], [0, 0], [-.1, .201], [-.2, .501], [-.3, .501], [-.3, .401], [-.801, 1.103], [-.1, .201], [0, 0], [0, 0], [-.1, .201], [0, 0], [-.2, .1], [0, 0], [0, 0], [-.1, .1], [0, 0], [-.2, .201], [-.3, .2], [0, 0], [-.2, .1], [-.5, .301], [-.2, .1], [0, 0], [0, 0], [-.1, 0], [0, 0], [-.2, 0], [-.3, .2], [-.2, 0], [-.5, .201], [-.1, 0], [-.1, 0], [-.2, .1], [-.2, .1], [-.3, .1], [-7.501, -4.313], [-2.8, -4.513], [0, 0], [0, 0], [0, -.1], [0, -.2], [-.1, -.301], [0, 0], [0, -.1], [-.1, -.301], [0, 0], [0, 0], [.2, -4.313], [0, 0], [0, 0], [0, -.301], [0, 0], [0, 0], [0, 0], [0, 0], [.1, -.1], [0, 0], [.1, -.401], [.1, -.2], [0, 0], [0, -.1], [.1, -.301], [0, -.201], [0, -.1], [.8, -1.604], [.1, -.1], [.1, -.1], [.1, -.3], [.1, 0], [0, 0], [.1, -.101], [.2, -.401], [.1, -.201], [0, 0]],
+                                o: [[0, 0], [-.2, .3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [.6, .802], [0, 0], [.4, .301], [0, 0], [4.401, 2.507], [0, 0], [.101, -.101], [0, 0], [2.299, -1.404], [0, 0], [2, -3.611], [-1.1, -4.012], [-2.001, -1.204], [0, 0], [0, 0], [0, 0], [0, 0], [3, -1.806], [2.801, -4.814], [-1.401, -5.416], [-4.801, -2.808], [-5.401, 1.404], [-1.8, 3.009], [0, 0], [0, 0], [0, 0], [8.201, 10.531], [-6.901, 11.834], [0, 0], [0, 0], [.1, -.201], [.1, -.301], [.2, -.502], [.3, -.602], [.6, -1.003], [.1, -.201], [0, 0], [0, 0], [.1, -.201], [0, 0], [.1, -.101], [0, 0], [0, 0], [.2, -.2], [0, 0], [.2, -.201], [.2, -.2], [0, 0], [.2, -.1], [.5, -.301], [.1, -.1], [0, 0], [.1, 0], [.1, 0], [0, 0], [.2, -.101], [.2, -.1], [.1, -.101], [.5, -.2], [.2, -.1], [.2, -.1], [.2, -.1], [.2, -.101], [.3, -.1], [8.402, -2.206], [4.601, 2.708], [0, 0], [0, 0], [0, .1], [.1, .1], [.1, .301], [0, 0], [0, .1], [.1, .301], [0, 0], [0, 0], [1.5, 4.112], [0, 0], [0, 0], [0, .301], [0, 0], [0, 0], [0, 0], [0, 0], [0, .1], [0, 0], [-.1, .301], [-.1, .401], [0, 0], [0, .1], [0, .1], [0, .1], [0, .1], [-.5, 1.705], [-.1, .101], [0, .1], [-.1, .301], [0, 0], [0, 0], [-.1, .1], [-.2, .301], [-.1, .1], [0, 0], [0, 0]],
+                                v: [[-3.05, 69.003], [-4.35, 70.708], [-5.05, 71.61], [16.553, 84.247], [44.159, 36.808], [46.759, 40.619], [49.56, 44.531], [54.061, 50.95], [57.661, 54.46], [57.861, 54.56], [59.163, 55.463], [59.663, 55.764], [74.065, 56.165], [74.264, 56.065], [74.665, 55.864], [74.965, 55.764], [80.366, 50.248], [80.566, 49.947], [82.066, 38.313], [74.764, 28.785], [68.363, 26.679], [51.06, 25.174], [76.465, -18.454], [40.659, -39.415], [49.361, -44.63], [56.661, -52.052], [58.862, -67.898], [49.16, -80.636], [33.357, -82.842], [20.654, -73.114], [17.853, -63.084], [17.353, -52.955], [-23.354, -76.825], [-34.956, -56.866], [-32.557, -20.058], [-65.662, -4.011], [-83.066, 25.977], [-60.261, 39.316], [-60.061, 38.814], [-59.561, 37.611], [-58.861, 36.207], [-57.962, 34.602], [-55.96, 31.493], [-55.66, 30.991], [-55.46, 30.69], [-55.26, 30.49], [-54.861, 29.988], [-54.66, 29.788], [-54.26, 29.387], [-54.26, 29.487], [-53.861, 28.985], [-53.46, 28.584], [-49.66, 25.074], [-48.96, 24.472], [-48.259, 23.971], [-48.16, 23.87], [-47.66, 23.57], [-46.259, 22.667], [-45.758, 22.366], [-45.658, 22.366], [-45.458, 22.266], [-45.258, 22.165], [-44.658, 21.865], [-44.158, 21.664], [-43.358, 21.263], [-42.858, 21.062], [-41.358, 20.46], [-40.857, 20.26], [-40.257, 20.059], [-39.757, 19.859], [-39.158, 19.658], [-38.257, 19.357], [-13.553, 22.667], [-2.35, 33.599], [-2.15, 33.799], [-1.55, 35.003], [-1.451, 35.304], [-1.251, 35.805], [-.85, 36.608], [-.35, 37.711], [-.249, 38.012], [.051, 38.814], [.25, 39.215], [.35, 39.617], [2.25, 52.254], [2.25, 52.655], [2.25, 53.156], [2.15, 54.159], [2.15, 54.56], [2.15, 54.661], [2.051, 55.563], [2.051, 55.764], [1.951, 56.165], [1.85, 56.767], [1.65, 57.77], [1.451, 58.672], [1.451, 58.873], [1.35, 59.274], [1.15, 59.876], [1.051, 60.277], [.951, 60.578], [-1.049, 65.492], [-1.251, 65.793], [-1.451, 66.094], [-1.85, 66.896], [-1.951, 66.997], [-2.251, 67.398], [-2.451, 67.699], [-3.05, 68.702], [-3.251, 69.103], [-3.251, 69.003]],
                                 c: true
                             },
                             ix: 2
@@ -9042,7 +9042,7 @@
                         ty: "fl",
                         c: {
                             a: 0,
-                            k: [ .961000031116, .952999997606, .952999997606, 1 ],
+                            k: [.961000031116, .952999997606, .952999997606, 1],
                             ix: 4
                         },
                         o: {
@@ -9059,17 +9059,17 @@
                         ty: "tr",
                         p: {
                             a: 0,
-                            k: [ 256.21, 158.519 ],
+                            k: [256.21, 158.519],
                             ix: 2
                         },
                         a: {
                             a: 0,
-                            k: [ 0, 0 ],
+                            k: [0, 0],
                             ix: 1
                         },
                         s: {
                             a: 0,
-                            k: [ 100, 100 ],
+                            k: [100, 100],
                             ix: 3
                         },
                         r: {
@@ -9093,7 +9093,7 @@
                             ix: 5
                         },
                         nm: "Transform"
-                    } ],
+                    }],
                     nm: "Group 1",
                     np: 2,
                     cix: 2,
@@ -9101,7 +9101,7 @@
                     ix: 1,
                     mn: "ADBE Vector Group",
                     hd: false
-                } ],
+                }],
                 ip: 0,
                 op: 974,
                 st: 0,
@@ -9125,17 +9125,17 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 309, 52, 0 ],
+                        k: [309, 52, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 0, 0, 0 ],
+                        k: [0, 0, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
@@ -9144,7 +9144,7 @@
                 op: 974,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
@@ -9160,14 +9160,14 @@
     function medalIconAnimation() {
         var animationData = {
             v: "5.6.2",
-            fr: 24,
+            fr: 30,
             ip: 0,
             op: 974,
-            w: 566,
-            h: 500,
+            w: 500,
+            h: 700,
             nm: "icon_4",
             ddd: 0,
-            assets: [ {
+            assets: [{
                 id: "image_0",
                 w: 269,
                 h: 255,
@@ -9195,8 +9195,8 @@
                 u: "images-bigIcon-4/",
                 p: "img_3.png",
                 e: 0
-            } ],
-            layers: [ {
+            }],
+            layers: [{
                 ddd: 0,
                 ind: 1,
                 ty: 2,
@@ -9213,69 +9213,69 @@
                     },
                     r: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 5,
-                            s: [ 0 ]
+                            s: [0]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 8,
-                            s: [ -18 ]
+                            s: [-18]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 11,
-                            s: [ 18 ]
+                            s: [18]
                         }, {
                             i: {
-                                x: [ .667 ],
-                                y: [ 1 ]
+                                x: [.667],
+                                y: [1]
                             },
                             o: {
-                                x: [ .333 ],
-                                y: [ 0 ]
+                                x: [.333],
+                                y: [0]
                             },
                             t: 14,
-                            s: [ -18 ]
+                            s: [-18]
                         }, {
                             t: 18,
-                            s: [ 0 ]
-                        } ],
+                            s: [0]
+                        }],
                         ix: 10
                     },
                     p: {
                         a: 0,
-                        k: [ 282, 281.5, 0 ],
+                        k: [282, 281.5, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 134.5, 127.5, 0 ],
+                        k: [134.5, 127.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
@@ -9305,31 +9305,31 @@
                     },
                     p: {
                         a: 0,
-                        k: [ 328, 438, 0 ],
+                        k: [328, 438, 0],
                         ix: 2
                     },
                     a: {
                         a: 0,
-                        k: [ 282, 281.5, 0 ],
+                        k: [282, 281.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 1,
-                        k: [ {
+                        k: [{
                             i: {
-                                x: [ .589, .589, .667 ],
-                                y: [ 1, 1, 1 ]
+                                x: [.589, .589, .667],
+                                y: [1, 1, 1]
                             },
                             o: {
-                                x: [ .407, .407, .333 ],
-                                y: [ 0, 0, 0 ]
+                                x: [.407, .407, .333],
+                                y: [0, 0, 0]
                             },
                             t: 0,
-                            s: [ 25, 25, 100 ]
+                            s: [25, 25, 100]
                         }, {
                             t: 14,
-                            s: [ 50, 50, 100 ]
-                        } ],
+                            s: [50, 50, 100]
+                        }],
                         ix: 6
                     }
                 },
@@ -9362,51 +9362,51 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .443 ],
-                                    y: [ 1 ]
+                                    x: [.443],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .499 ],
-                                    y: [ 0 ]
+                                    x: [.499],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 238 ]
+                                s: [238]
                             }, {
                                 t: 8,
-                                s: [ 158 ]
-                            } ],
+                                s: [158]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .443 ],
-                                    y: [ 1 ]
+                                    x: [.443],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .499 ],
-                                    y: [ 0 ]
+                                    x: [.499],
+                                    y: [0]
                                 },
                                 t: 0,
-                                s: [ 497.5 ]
+                                s: [497.5]
                             }, {
                                 t: 8,
-                                s: [ 597.5 ]
-                            } ],
+                                s: [597.5]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 137, 189.5, 0 ],
+                        k: [137, 189.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
@@ -9439,51 +9439,51 @@
                         s: true,
                         x: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .443 ],
-                                    y: [ 1 ]
+                                    x: [.443],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .167 ],
-                                    y: [ 0 ]
+                                    x: [.167],
+                                    y: [0]
                                 },
                                 t: 3,
-                                s: [ 330 ]
+                                s: [330]
                             }, {
                                 t: 11,
-                                s: [ 410 ]
-                            } ],
+                                s: [410]
+                            }],
                             ix: 3
                         },
                         y: {
                             a: 1,
-                            k: [ {
+                            k: [{
                                 i: {
-                                    x: [ .443 ],
-                                    y: [ 1 ]
+                                    x: [.443],
+                                    y: [1]
                                 },
                                 o: {
-                                    x: [ .167 ],
-                                    y: [ 0 ]
+                                    x: [.167],
+                                    y: [0]
                                 },
                                 t: 3,
-                                s: [ 497.5 ]
+                                s: [497.5]
                             }, {
                                 t: 11,
-                                s: [ 597.5 ]
-                            } ],
+                                s: [597.5]
+                            }],
                             ix: 4
                         }
                     },
                     a: {
                         a: 0,
-                        k: [ 137, 189.5, 0 ],
+                        k: [137, 189.5, 0],
                         ix: 1
                     },
                     s: {
                         a: 0,
-                        k: [ 100, 100, 100 ],
+                        k: [100, 100, 100],
                         ix: 6
                     }
                 },
@@ -9492,7 +9492,7 @@
                 op: 974,
                 st: 0,
                 bm: 0
-            } ],
+            }],
             markers: []
         };
         var params = {
