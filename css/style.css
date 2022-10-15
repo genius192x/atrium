@@ -1632,20 +1632,24 @@ body::after {
 
 body {
   background-color: #0e2e93;
+  overflow: overlay;
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
-  width: 10px;
+  width:8px;
+  transition: all 1s ease;
 }
-
+*::-webkit-scrollbar:hover{
+  width: 11px;
+  transition: all 1s ease;
+}
 *::-webkit-scrollbar-track {
-  background-color: #f4f3f3;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #e85f62;
+  background-color: #61C9C2;
 }
 
 .gray-main {
@@ -1756,13 +1760,19 @@ body {
 .main-title {
   font-weight: 500;
   font-size: 46px;
-  /* line-height: 140%; */
+  /* line-height: 150%; */
   color: #0a0a0a;
   z-index: 2;
 
   margin: 0 auto;
 }
-
+@media (max-width: 1250px) {
+  .main-title {
+       
+      line-height: 150%;
+       
+    }
+}
 .caption__title {
   max-width: 1130px;
 }
@@ -1930,7 +1940,12 @@ body {
       flex-wrap: wrap;
   padding: 0 20px;
 }
-
+@media (max-width: 767.98px) {
+  .achievements__body {
+      
+      padding: 0 15px;
+    }
+}
 .achievements__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2117,7 +2132,7 @@ body {
 }
 
 .achievements__content {
-  max-width: 275px;
+  max-width: 300px;
 }
 
 .achievements__content:nth-child(3) {
