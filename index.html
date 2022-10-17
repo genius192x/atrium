@@ -223,8 +223,7 @@
 
 						</div>
 						<form class="feedback__input-wrapper">
-							<input type="tel" placeholder="Ваш номер" name="tel" pattern="[0-9]{3}\-[0-9]{3}"
-								id="feedbackInput">
+							<input type="tel" placeholder="Ваш номер" name="tel" id="feedbackInput" class="tel">
 							<button type=" submit" id="feedbackBtn" data-da=".feedback__body, 767.98">Отправить</button>
 						</form>
 						<div class="feedback__discription">Оставьте номер и мы свяжемся с вами в ближайшие 30 минут</div>
@@ -468,13 +467,13 @@
 						<div class="form__row">
 							<div class="form__column">
 								<label for="inp" class="form__name-label label">Имя</label>
-								<input autocomplete="off" type="tel" name="form[]" data-error="Ошибка" placeholder="Иван Иванов"
-									class="form__name input">
+								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка"
+									placeholder="Иван Иванов" class="form__name input">
 							</div>
 							<div class="form__column">
 								<label for="inp" class="popup__number-label label">Номер телефона *</label>
-								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="+7"
-									class="form__number input">
+								<input autocomplete="off" type="tel" value="" name="form[]" data-error="Ошибка" placeholder="+7"
+									class="form__number input tel">
 							</div>
 						</div>
 						<a href="#" data-popup="#result" class="link">Отправить заявку</a>
