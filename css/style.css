@@ -87,7 +87,8 @@ h6 {
   -ms-touch-action: none;
       touch-action: none;
 }
-
+ 
+ 
 .wrapper {
   min-height: 100%;
   display: -webkit-box;
