@@ -3645,7 +3645,7 @@
             },
             breakpoints: {
                 320: {
-                    allowTouchMove: true,
+                    
                     spaceBetween: 20
                 },
                 530: {
@@ -3653,15 +3653,15 @@
                 },
                 768: {},
                 992: {
-                    allowTouchMove: false,
+                    
                     spaceBetween: 20
                 },
                 1268: {
-                    allowTouchMove: false,
+                    
                     spaceBetween: 24
                 },
                 1550: {
-                    allowTouchMove: false,
+                    
                     spaceBetween: 24
                 }
             },
